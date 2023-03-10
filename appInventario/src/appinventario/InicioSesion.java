@@ -28,6 +28,8 @@ public class InicioSesion extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setText("Iniciar Sesion");
+        jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -98,8 +100,10 @@ public class InicioSesion extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Interfaz inter = new Interfaz();
+        String user = jTxtFieldUsuario.getText();
+        String pass = jTxtFieldContrasena.getText();
         
-        if(jTxtFieldUsuario.getText().equals("admin") && jTxtFieldContrasena.equals("123")){
+        if(user.equals("admin") && pass.equals("123")){
             this.dispose();
             inter.setVisible(true);
         }
