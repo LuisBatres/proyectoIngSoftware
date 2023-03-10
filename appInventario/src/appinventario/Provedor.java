@@ -10,7 +10,7 @@ public class Provedor {
     private String fechaContrato;
     
     // Constructores
-    public Provedor() {
+    public Provedor () {
         idProvedor    = 0;
         nombre        = "";
         telefono      = "";
@@ -18,8 +18,7 @@ public class Provedor {
         fechaContrato = "";
     }
     
-    public Provedor(int id, String nombre, String telefono,
-            String email, String fechaContrato) {
+    public Provedor (int id, String nombre, String telefono, String email, String fechaContrato ) {
         this.idProvedor    = id;
         this.nombre        = nombre;
         this.telefono      = telefono;
@@ -27,45 +26,44 @@ public class Provedor {
         this.fechaContrato = fechaContrato;
     }
     
-    // Metodos
-
-    public int getIdProvedor() {
+    // Getters y setters
+    public int getIdProvedor () {
         return idProvedor;
     }
 
-    public void setIdProvedor(int idProvedor) {
+    public void setIdProvedor ( int idProvedor ) {
         this.idProvedor = idProvedor;
     }
 
-    public String getNombre() {
+    public String getNombre () {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre ( String nombre ) {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
+    public String getTelefono () {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono ( String telefono ) {
         this.telefono = telefono;
     }
 
-    public String getEmail() {
+    public String getEmail () {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail ( String email ) {
         this.email = email;
     }
 
-    public String getFechaContrato() {
+    public String getFechaContrato () {
         return fechaContrato;
     }
 
-    public void setFechaContrato(String fechaContrato) {
+    public void setFechaContrato ( String fechaContrato ) {
         this.fechaContrato = fechaContrato;
     }
 }

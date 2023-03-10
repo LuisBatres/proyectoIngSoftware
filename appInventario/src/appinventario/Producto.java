@@ -3,94 +3,89 @@ package appinventario;
 public class Producto {
     
     //Atributos
-    private int idProd;
+    private int    idProd;
     private String codigo;
     private String nombre;
     private String marca;
-    private float precioCompra;
-    private float precioVenta;
-    private int existencias;
+    private float  precioCompra;
+    private float  precioVenta;
+    private int    existencias;
 
     //Constructor por default
-    public Producto(){
-        idProd = 0;
-        codigo = "";
-        nombre = "";
-        marca = "";
+    public Producto (){
+        idProd       = 0;
+        codigo       = "";
+        nombre       = "";
+        marca        = "";
         precioCompra = 0;
-        precioVenta = 0;
-        existencias = 0;
+        precioVenta  = 0;
+        existencias  = 0;
     }
     
     //Constructor
-    public Producto(int idProd, String codigo, String nombre, String marca, float precioCompra, float precioVenta, int existencias) {
-        this.idProd = idProd;
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.marca = marca;
+    public Producto ( int idProd, String codigo, String nombre, String marca, float precioCompra, float precioVenta, int existencias ) {
+        this.idProd       = idProd;
+        this.codigo       = codigo;
+        this.nombre       = nombre;
+        this.marca        = marca;
         this.precioCompra = precioCompra;
-        this.precioVenta = precioVenta;
-        this.existencias = existencias;
+        this.precioVenta  = precioVenta;
+        this.existencias  = existencias;
     }
 
-    public int getIdProd() {
+    public int getIdProd () {
         return idProd;
     }
 
-    public void setIdProd(int idProd) {
+    public void setIdProd ( int idProd ) {
         this.idProd = idProd;
     }
 
-    public String getCodigo() {
+    public String getCodigo () {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo ( String codigo ) {
         this.codigo = codigo;
     }
 
-    public String getNombre() {
+    public String getNombre () {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre ( String nombre ) {
         this.nombre = nombre;
     }
 
-    public String getMarca() {
+    public String getMarca () {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca ( String marca ) {
         this.marca = marca;
     }
 
-    public float getPrecioCompra() {
+    public float getPrecioCompra () {
         return precioCompra;
     }
 
-    public void setPrecioCompra(float precioCompra) {
+    public void setPrecioCompra ( float precioCompra ) {
         this.precioCompra = precioCompra;
     }
 
-    public float getPrecioVenta() {
+    public float getPrecioVenta () {
         return precioVenta;
     }
 
-    public void setPrecioVenta(float precioVenta) {
+    public void setPrecioVenta ( float precioVenta ) {
         this.precioVenta = precioVenta;
     }
 
-    public int getExistencias() {
+    public int getExistencias () {
         return existencias;
     }
 
-    public void setExistencias(int existencias) {
+    public void setExistencias ( int existencias ) {
         this.existencias = existencias;
-    }
-
-    @Override
-    public String toString() {
-        return "Producto{" + "idProd=" + idProd + ", codigo=" + codigo + ", nombre=" + nombre + ", marca=" + marca + ", precioCompra=" + precioCompra + ", precioVenta=" + precioVenta + ", existencias=" + existencias + '}';
     }
 }

@@ -10,7 +10,7 @@ public class Empresa {
     private String fechaContrato;
     
     // Constructores
-    public Empresa() {
+    public Empresa () {
         idEmpresa     = 0;
         nombre        = "";
         telefono      = "";
@@ -18,8 +18,7 @@ public class Empresa {
         fechaContrato = "";
     }
     
-    public Empresa (int id, String nombre, String tel, 
-            String email, String fechaContrato) {
+    public Empresa ( int id, String nombre, String tel, String email, String fechaContrato ) {
         this.idEmpresa     = id;
         this.nombre        = nombre;
         this.telefono      = tel;
@@ -28,49 +27,43 @@ public class Empresa {
     }
     
     // Getters y setters
-
-    public int getIdEmpresa() {
+    public int getIdEmpresa () {
         return idEmpresa;
     }
 
-    public void setIdEmpresa(int idEmpresa) {
+    public void setIdEmpresa ( int idEmpresa ) {
         this.idEmpresa = idEmpresa;
     }
 
-    public String getNombre() {
+    public String getNombre () {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre ( String nombre ) {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
+    public String getTelefono () {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono ( String telefono ) {
         this.telefono = telefono;
     }
 
-    public String getEmail() {
+    public String getEmail () {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail ( String email ) {
         this.email = email;
     }
 
-    public String getFechaContrato() {
+    public String getFechaContrato () {
         return fechaContrato;
     }
 
-    public void setFechaContrato(String fechaContrato) {
+    public void setFechaContrato ( String fechaContrato ) {
         this.fechaContrato = fechaContrato;
-    }
-
-    @Override
-    public String toString() {
-        return "Empresa{" + "idEmpresa=" + idEmpresa + ", nombre=" + nombre + ", telefono=" + telefono + ", email=" + email + ", fechaContrato=" + fechaContrato + '}';
     }
 }
