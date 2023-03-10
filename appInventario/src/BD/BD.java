@@ -51,6 +51,8 @@ public class BD {
     }
     
     public void eliminaVenta(Venta obj) {
-        String query = "";
+        
     }
+    
+    
 }
