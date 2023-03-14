@@ -1,5 +1,6 @@
 package appinventario;
 
+import BD.Conexion;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +14,9 @@ public class Interfaz extends javax.swing.JFrame {
      */
     public Interfaz() {
         initComponents();
+        
+        Conexion con = new Conexion();
+        con.conexion();
     }
 
     /**
