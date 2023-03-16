@@ -1,6 +1,5 @@
 package appinventario;
 
-/* @author franc */
 public class Provedor {
     // Atributos
     private int    idProvedor;

@@ -1,6 +1,5 @@
 package appinventario;
 
-/* @author franc */
 public class Empresa {
     // Atributos
     private int    idEmpresa;
