@@ -6,7 +6,6 @@ import appinventario.Provedor;
 import appinventario.Venta;
 import javax.swing.JTable;
 
-/* @author franc */
 public class BD {
     // Agregar conexion
     
