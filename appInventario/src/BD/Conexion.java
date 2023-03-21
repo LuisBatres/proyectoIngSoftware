@@ -2,7 +2,6 @@ package BD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class Conexion {
     // Conexion a la base de datos
@@ -10,11 +9,12 @@ public class Conexion {
     
     public Connection conexion () {
         String conexionUrl = "jdbc:sqlserver://localhost:1433;"
-                           + "database=master;"
+                           + "databaseName=master;"
                            + "user=sa;"
                            + "password=root;";
 
         try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             con = DriverManager.getConnection ( conexionUrl );
             System.out.println ( "CONEXION EXITOSA" );
         }
