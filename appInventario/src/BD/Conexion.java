@@ -9,9 +9,10 @@ public class Conexion {
     
     public Connection conexion () {
         String conexionUrl = "jdbc:sqlserver://localhost:1433;"
-                           + "databaseName=master;"
+                           + "databaseName=tienda;"
                            + "user=sa;"
-                           + "password=root;";
+                           + "password=root;"
+                           + "encrypt=false;";
 
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
