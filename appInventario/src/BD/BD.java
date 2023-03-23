@@ -10,15 +10,18 @@ public class BD {
     // Agregar conexion
     
     public void insertaProducto(Producto obj) {
-        String query = "";
+        int id = obj.getIdProd();
+        String query = "INSERT INTO producto WHERE id = " + id;
     }
     
     public void insertaEmpresa(Empresa obj) {
-        String query = "";
+        int id = obj.getIdEmpresa();
+        String query = "INSERT INTO producto WHERE id = " + id;
     }
     
     public void insertaProvedor(Provedor obj) {
-        String query = "";
+        int id = obj.getIdProvedor();
+        String query = "INSERT INTO producto WHERE id = " + id;
     }
     
     public void insertaVenta(Venta obj) {
