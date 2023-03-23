@@ -92,9 +92,19 @@ public class Interfaz extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
         jButton4.setText("Nuevo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
         jButton5.setText("Modificar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
         jButton6.setText("Eliminar");
@@ -257,6 +267,18 @@ public class Interfaz extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
+        np.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        modificarProducto mp = new modificarProducto(this, rootPaneCheckingEnabled);
+        mp.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
