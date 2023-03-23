@@ -10,9 +10,10 @@ public class Conexion {
     
     public Connection conexion () {
         String conexionUrl = "jdbc:sqlserver://localhost:1433;"
-                           + "database=master;"
+                           + "database=tienda;"
                            + "user=sa;"
-                           + "password=root;";
+                           + "password=root;"
+                           + "encrypt=false;";
 
         try{
             con = DriverManager.getConnection ( conexionUrl );
