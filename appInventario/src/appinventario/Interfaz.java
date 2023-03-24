@@ -2,7 +2,7 @@ package appinventario;
 
 import BD.Conexion;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import com.sun.jdi.connect.spi.Connection;
+//import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.DriverManager;
+import java.sql.Connection;
 
 
 public class Interfaz extends javax.swing.JFrame {
@@ -43,6 +44,13 @@ public class Interfaz extends javax.swing.JFrame {
             //Connection conn = DriverManager.getConnection();
             //Connection conn = con.getConexion();
             //con.getConexion();
+            String conexionUrl = "jdbc:sqlserver://localhost:1433;"
+                           + "database=tienda;"
+                           + "user=sa;"
+                           + "password=root;"
+                           + "encrypt=false;";
+            Connection connection = DriverManager.getConnection(conexionUrl);
+
             
             //ps = .prepareStatement("select * from productos");
             rs = ps.executeQuery();
