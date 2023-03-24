@@ -13,25 +13,12 @@ public class Interfaz extends javax.swing.JFrame {
 
     Color buttonsColor = new Color(255, 255, 255);
     Color buttonsColorEntered = new Color(190, 190, 190);
-    static Color panelColor = new Color(25, 34, 43);
-    /**
-     * Creates new form Interfaz
-     */
+
     public Interfaz() {
         initComponents();
         
         Conexion con = new Conexion();
         con.conexion();
-        
-        this.jbtnProductos.setBackground(buttonsColor);
-        this.jbtnProvedores.setBackground(buttonsColor);
-        this.jbtnVentas.setBackground(buttonsColor);
-        this.jbtnNuevo.setBackground(buttonsColor);
-        this.jbtnModificar.setBackground(buttonsColor);
-        this.jbtnEliminar.setBackground(buttonsColor);
-        
-        
-        this.jMenuBar.setBackground(panelColor);
     }
 
     @SuppressWarnings("unchecked")
@@ -511,9 +498,8 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jLabelArchivoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelArchivoMouseEntered
-        this.jLabelArchivo.setBackground(panelColor);
         this.jLabelArchivo.setForeground(new Color(255,255,255));
-        //this.jPopupMenu1.setVisible(true);
+        this.jPopupMenu1.setVisible(true);
     }//GEN-LAST:event_jLabelArchivoMouseEntered
 
     private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
