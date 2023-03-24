@@ -34,7 +34,7 @@ public class Interfaz extends javax.swing.JFrame {
     private void actualizarTabla(){
         DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
         modelo.setRowCount(0);
-        
+        /*
         PreparedStatement ps;
         ResultSet rs;
         ResultSetMetaData rsmd;
@@ -67,7 +67,7 @@ public class Interfaz extends javax.swing.JFrame {
             
         }catch(SQLServerException e){
             JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }
 
     @SuppressWarnings("unchecked")
