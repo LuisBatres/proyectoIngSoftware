@@ -11,16 +11,22 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.table.DefaultTableModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.DriverManager;
+
 
 public class Interfaz extends javax.swing.JFrame {
 
     Color buttonsColor = new Color(255, 255, 255);
     Color buttonsColorEntered = new Color(190, 190, 190);
 
+    Conexion con = new Conexion();
+    
     public Interfaz() {
         initComponents();
         
-        Conexion con = new Conexion();
         con.getConexion();
     }
     
@@ -28,25 +34,28 @@ public class Interfaz extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
         modelo.setRowCount(0);
         
-        //PreparedStatement ps;
-        //ResultSet rs;
-        //ResultSetMetaData rsmd;
+        PreparedStatement ps;
+        ResultSet rs;
+        ResultSetMetaData rsmd;
         int columnas;
         
         try{
+            //Connection conn = DriverManager.getConnection();
+            //Connection conn = con.getConexion();
+            //con.getConexion();
             
-            //ps = con.prepareStatement("select * from productos");
-            //rs = ps.executeQuery();
-            //rsmd = rs.getMetaData();
-            //columnas = rsmd.getColumnCount();
+            //ps = .prepareStatement("select * from productos");
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
             
-            /*while(rs.next()){
+            while(rs.next()){
                 Object[] fila = Object[columnas];
                 for (int i = 0; i < columnas; i++) {
                     fila[i] = rs.getObject(i+1);
                 }
                 modelo.addRow(fila);
-            }*/
+            }
             
         }catch(SQLServerException e){
             JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
