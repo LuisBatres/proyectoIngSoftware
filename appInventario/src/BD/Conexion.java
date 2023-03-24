@@ -7,7 +7,7 @@ public class Conexion {
     // Conexion a la base de datos
     Connection con = null;
     
-    public Connection conexion () {
+    public Connection getConexion () {
         String conexionUrl = "jdbc:sqlserver://localhost:1433;"
                            + "database=tienda;"
                            + "user=sa;"
@@ -16,14 +16,15 @@ public class Conexion {
 
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection ( conexionUrl );
+            Connection con = DriverManager.getConnection ( conexionUrl );
             System.out.println ( "CONEXION EXITOSA" );
+            return con;
         }
     
         catch ( Exception ex ) {
             System.out.println ( "Error abrir: " + ex.getMessage () );
+            return null;
         }
-            return con;
     }
     
 }

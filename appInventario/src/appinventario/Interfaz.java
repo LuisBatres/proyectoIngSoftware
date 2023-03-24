@@ -1,6 +1,8 @@
 package appinventario;
 
 import BD.Conexion;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -8,6 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.table.DefaultTableModel;
 
 public class Interfaz extends javax.swing.JFrame {
 
@@ -18,7 +21,36 @@ public class Interfaz extends javax.swing.JFrame {
         initComponents();
         
         Conexion con = new Conexion();
-        con.conexion();
+        con.getConexion();
+    }
+    
+    private void actualizarTabla(){
+        DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
+        modelo.setRowCount(0);
+        
+        //PreparedStatement ps;
+        //ResultSet rs;
+        //ResultSetMetaData rsmd;
+        int columnas;
+        
+        try{
+            
+            //ps = con.prepareStatement("select * from productos");
+            //rs = ps.executeQuery();
+            //rsmd = rs.getMetaData();
+            //columnas = rsmd.getColumnCount();
+            
+            /*while(rs.next()){
+                Object[] fila = Object[columnas];
+                for (int i = 0; i < columnas; i++) {
+                    fila[i] = rs.getObject(i+1);
+                }
+                modelo.addRow(fila);
+            }*/
+            
+        }catch(SQLServerException e){
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -39,7 +71,7 @@ public class Interfaz extends javax.swing.JFrame {
         jbtnVentas = new javax.swing.JButton();
         jbtnProductos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProductos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jbtnNuevo = new javax.swing.JButton();
@@ -161,15 +193,23 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(118, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-
+                "id Producto", "Codigo", "Nombre", "Marca", "Precio Compra", "Precio Venta", "Existencias", "id Provedor"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblProductos);
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         jLabel1.setText("Productos");
@@ -577,12 +617,12 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbtnEliminar;
     private javax.swing.JButton jbtnModificar;
     private javax.swing.JButton jbtnNuevo;
     private javax.swing.JButton jbtnProductos;
     private javax.swing.JButton jbtnProvedores;
     private javax.swing.JButton jbtnVentas;
+    private javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
 }
