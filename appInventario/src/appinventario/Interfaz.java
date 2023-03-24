@@ -33,7 +33,7 @@ public class Interfaz extends javax.swing.JFrame {
         //ResultSetMetaData rsmd;
         int columnas;
         
-        try{
+        //try{
             
             //ps = con.prepareStatement("select * from productos");
             //rs = ps.executeQuery();
@@ -48,9 +48,9 @@ public class Interfaz extends javax.swing.JFrame {
                 modelo.addRow(fila);
             }*/
             
-        }catch(SQLServerException e){
+        /*}catch(SQLServerException e){
             JOptionPane.showMessageDialog(null, "Error: "+e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }
 
     @SuppressWarnings("unchecked")
