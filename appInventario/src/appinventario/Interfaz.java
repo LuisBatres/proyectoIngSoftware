@@ -60,6 +60,9 @@ public class Interfaz extends javax.swing.JFrame {
         jbtnProvedores = new javax.swing.JButton();
         jbtnVentas = new javax.swing.JButton();
         jbtnProductos = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -454,18 +457,6 @@ public class Interfaz extends javax.swing.JFrame {
         this.jbtnVentas.setBackground(buttonsColor);
     }//GEN-LAST:event_jbtnVentasMouseExited
 
-    private void jbtnNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnNuevoMouseEntered
-
-    private void jbtnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnNuevoMouseExited
-
-    private void jbtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnNuevoActionPerformed
-
     private void jbtnModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnModificarMouseEntered
@@ -539,6 +530,30 @@ public class Interfaz extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jLabelArchivoMouseClicked
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
+        np.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        // modificarProducto mp = new modificarProducto(this, rootPaneCheckingEnabled);
+        // mp.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jbtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnNuevoActionPerformed
+
+    private void jbtnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnNuevoMouseExited
+
+    private void jbtnNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnNuevoMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -575,6 +590,9 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
