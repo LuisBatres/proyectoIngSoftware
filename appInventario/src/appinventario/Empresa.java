@@ -2,67 +2,66 @@ package appinventario;
 
 public class Empresa {
     // Atributos
-    private int    idEmpresa;
     private String nombre;
-    private String telefono;
+    private String giro;
     private String email;
-    private String fechaContrato;
+    private String telefono;
+    private String domicilio;
     
     // Constructores
     public Empresa () {
-        idEmpresa     = 0;
         nombre        = "";
-        telefono      = "";
+        giro          = "";
         email         = "";
-        fechaContrato = "";
+        telefono      = "";
+        domicilio     = "";
     }
     
-    public Empresa ( int id, String nombre, String tel, String email, String fechaContrato ) {
-        this.idEmpresa     = id;
+    public Empresa ( String nombre, String giro, String email, String tel, String domicilio ) {
         this.nombre        = nombre;
-        this.telefono      = tel;
+        this.giro          = giro;
         this.email         = email;
-        this.fechaContrato = fechaContrato;
-    }
-    
-    // Getters y setters
-    public int getIdEmpresa () {
-        return idEmpresa;
+        this.telefono      = tel;
+        this.domicilio     = domicilio;
     }
 
-    public void setIdEmpresa ( int idEmpresa ) {
-        this.idEmpresa = idEmpresa;
-    }
-
-    public String getNombre () {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre ( String nombre ) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getTelefono () {
-        return telefono;
+    public String getGiro() {
+        return giro;
     }
 
-    public void setTelefono ( String telefono ) {
-        this.telefono = telefono;
+    public void setGiro(String giro) {
+        this.giro = giro;
     }
 
-    public String getEmail () {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail ( String email ) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getFechaContrato () {
-        return fechaContrato;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setFechaContrato ( String fechaContrato ) {
-        this.fechaContrato = fechaContrato;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
     }
 }

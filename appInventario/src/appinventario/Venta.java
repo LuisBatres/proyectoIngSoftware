@@ -39,7 +39,7 @@ public class Venta {
         this.fecha = fecha;
     }
 
-    public double getSubtotal () {
+    public float getSubtotal () {
         return subtotal;
     }
 
@@ -47,7 +47,7 @@ public class Venta {
         this.subtotal = subtotal;
     }
 
-    public double getTotal () {
+    public float getTotal () {
         return total;
     }
 

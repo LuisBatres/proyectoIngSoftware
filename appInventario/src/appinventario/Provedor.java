@@ -7,6 +7,7 @@ public class Provedor {
     private String telefono;
     private String email;
     private String fechaContrato;
+    private int    idEmpresa;
     
     // Constructores
     public Provedor () {
@@ -15,14 +16,16 @@ public class Provedor {
         telefono      = "";
         email         = "";
         fechaContrato = "";
+        idEmpresa     = 0;
     }
     
-    public Provedor (int id, String nombre, String telefono, String email, String fechaContrato ) {
+    public Provedor (int id, String nombre, String telefono, String email, String fechaContrato, int idEmpresa ) {
         this.idProvedor    = id;
         this.nombre        = nombre;
         this.telefono      = telefono;
         this.email         = email;
         this.fechaContrato = fechaContrato;
+        this.idEmpresa     = idEmpresa;
     }
     
     // Getters y setters
@@ -36,6 +39,14 @@ public class Provedor {
 
     public String getNombre () {
         return nombre;
+    }
+
+    public int getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(int idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
     public void setNombre ( String nombre ) {

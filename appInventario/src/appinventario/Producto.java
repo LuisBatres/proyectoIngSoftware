@@ -3,7 +3,6 @@ package appinventario;
 public class Producto {
     
     //Atributos
-    private int    idProd;
     private String codigo;
     private String nombre;
     private String marca;
@@ -13,7 +12,6 @@ public class Producto {
 
     //Constructor por default
     public Producto (){
-        idProd       = 0;
         codigo       = "";
         nombre       = "";
         marca        = "";
@@ -23,22 +21,13 @@ public class Producto {
     }
     
     //Constructor
-    public Producto ( int idProd, String codigo, String nombre, String marca, float precioCompra, float precioVenta, int existencias ) {
-        this.idProd       = idProd;
+    public Producto ( String codigo, String nombre, String marca, float precioCompra, float precioVenta, int existencias ) {
         this.codigo       = codigo;
         this.nombre       = nombre;
         this.marca        = marca;
         this.precioCompra = precioCompra;
         this.precioVenta  = precioVenta;
         this.existencias  = existencias;
-    }
-
-    public int getIdProd () {
-        return idProd;
-    }
-
-    public void setIdProd ( int idProd ) {
-        this.idProd = idProd;
     }
 
     public String getCodigo () {
