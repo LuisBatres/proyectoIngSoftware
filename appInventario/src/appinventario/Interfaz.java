@@ -3,6 +3,7 @@ package appinventario;
 import BD.Conexion;
 //import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -46,8 +47,7 @@ public class Interfaz extends javax.swing.JFrame {
         jbtnModificar = new javax.swing.JButton();
         jbtnEliminar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabelArchivo = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jbtnExptrExcl = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -246,52 +246,34 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel3.setMinimumSize(new java.awt.Dimension(100, 15));
         jPanel3.setPreferredSize(new java.awt.Dimension(518, 10));
 
-        jLabelArchivo.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelArchivo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelArchivo.setText("Archivo");
-        jLabelArchivo.setComponentPopupMenu(jPopupMenu1);
-        jLabelArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabelArchivo.setOpaque(true);
-        jLabelArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelArchivoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelArchivoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelArchivoMouseExited(evt);
-            }
-        });
-
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Acerca de");
-        jLabel4.setOpaque(true);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabelArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 558, Short.MAX_VALUE))
+            .addGap(0, 682, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 20, Short.MAX_VALUE)
         );
+
+        jbtnExptrExcl.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        jbtnExptrExcl.setText("Exportar Excel");
+        jbtnExptrExcl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtnExptrExcl.setFocusPainted(false);
+        jbtnExptrExcl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnExptrExclMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnExptrExclMouseExited(evt);
+            }
+        });
+        jbtnExptrExcl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnExptrExclActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -314,7 +296,9 @@ public class Interfaz extends javax.swing.JFrame {
                                         .addGap(75, 75, 75)
                                         .addComponent(jbtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(78, 78, 78)
-                                        .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(58, 58, 58)
+                                        .addComponent(jbtnExptrExcl))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -333,7 +317,8 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbtnExptrExcl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
@@ -508,24 +493,25 @@ public class Interfaz extends javax.swing.JFrame {
         is.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jLabelArchivoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelArchivoMouseEntered
-        this.jLabelArchivo.setForeground(new Color(255,255,255));
-        this.jPopupMenu1.setVisible(true);
-    }//GEN-LAST:event_jLabelArchivoMouseEntered
+    private void jbtnExptrExclMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnExptrExclMouseEntered
 
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        
-    }//GEN-LAST:event_jLabel4MouseEntered
+    private void jbtnExptrExclMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnExptrExclMouseExited
 
-    private void jLabelArchivoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelArchivoMouseExited
-        this.jLabelArchivo.setBackground(new Color(255,255,255));
-        this.jLabelArchivo.setForeground(new Color(0,0,0));
-    }//GEN-LAST:event_jLabelArchivoMouseExited
+    private void jbtnExptrExclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExptrExclActionPerformed
+        // TODO add your handling code here:
+        ExportarExcel obj;
 
-    private void jLabelArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelArchivoMouseClicked
-        
-        
-    }//GEN-LAST:event_jLabelArchivoMouseClicked
+        try {
+            obj = new ExportarExcel();
+            obj.exportarExcel(tblProductos);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+    }//GEN-LAST:event_jbtnExptrExclActionPerformed
 
     /**
      * @param args the command line arguments
@@ -568,8 +554,6 @@ public class Interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabelArchivo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -589,6 +573,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnEliminar;
+    private javax.swing.JButton jbtnExptrExcl;
     private javax.swing.JButton jbtnModificar;
     private javax.swing.JButton jbtnNuevo;
     private javax.swing.JButton jbtnProductos;
