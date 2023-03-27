@@ -1,12 +1,12 @@
 package appinventario;
 
 import BD.Conexion;
-//import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
+import java.awt.Insets;
 import java.io.IOException;
-import javax.swing.JOptionPane;
+import javax.swing.BorderFactory;
 import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.border.Border;
 
 
 public class Interfaz extends javax.swing.JFrame {
@@ -18,7 +18,7 @@ public class Interfaz extends javax.swing.JFrame {
     
     public Interfaz() {
         initComponents();
-        
+        JMenuBarPers men = new JMenuBarPers ( this );
         con.getConexion();
     }
     
@@ -46,14 +46,7 @@ public class Interfaz extends javax.swing.JFrame {
         jbtnNuevo = new javax.swing.JButton();
         jbtnModificar = new javax.swing.JButton();
         jbtnEliminar = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
         jbtnExptrExcl = new javax.swing.JButton();
-        jMenuBar = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -241,22 +234,6 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setMaximumSize(new java.awt.Dimension(32767, 15));
-        jPanel3.setMinimumSize(new java.awt.Dimension(100, 15));
-        jPanel3.setPreferredSize(new java.awt.Dimension(518, 10));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
         jbtnExptrExcl.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
         jbtnExptrExcl.setText("Exportar Excel");
         jbtnExptrExcl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -280,35 +257,32 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(297, 297, 297)
-                                        .addComponent(jLabel2))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(75, 75, 75)
-                                        .addComponent(jbtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(78, 78, 78)
-                                        .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(58, 58, 58)
-                                        .addComponent(jbtnExptrExcl))))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(297, 297, 297)
+                                .addComponent(jLabel2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(75, 75, 75)
+                                .addComponent(jbtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78)
+                                .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(jbtnExptrExcl))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -327,47 +301,6 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jMenuBar.setBorder(null);
-        jMenuBar.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuBar.setMaximumSize(new java.awt.Dimension(50, 22));
-        jMenuBar.setMinimumSize(new java.awt.Dimension(50, 22));
-        jMenuBar.setOpaque(true);
-        jMenuBar.setPreferredSize(new java.awt.Dimension(50, 22));
-
-        jMenu1.setText("File");
-
-        jMenuItem1.setText("Cerrar Sesion");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Salir");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
-        jMenuBar.add(jMenu1);
-
-        jMenu2.setText("About");
-
-        jMenuItem3.setText("Version");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuBar.add(jMenu2);
-
-        setJMenuBar(jMenuBar);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -384,7 +317,7 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnProvedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProvedoresActionPerformed
-        System.out.println(this.jMenuBar.getBackground());
+        //System.out.println(this.jMenuBar.getBackground());
     }//GEN-LAST:event_jbtnProvedoresActionPerformed
 
     private void jbtnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVentasActionPerformed
@@ -392,7 +325,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnVentasActionPerformed
 
     private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
-        System.out.println(this.jMenuBar.getBackground());
+        //System.out.println(this.jMenuBar.getBackground());
     }//GEN-LAST:event_jbtnProductosActionPerformed
 
     private void jbtnProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseEntered
@@ -464,35 +397,6 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnEliminarActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,
-            "Software Inventario\n\n"
-            + "Integrantes:\n"
-            + "Iván Osmar Vasquez Flores - 20130827\n" +
-            "Adrián Torres de Alba - 20130763\n" +
-            "Heriberto Agustín Zuñiga Silveti - 20130769\n" +
-            "Luis Enrique Batres Martínez - 20130806\n" +
-            "Marcos Eduardo Solis Ceniceros - 20130844\n" +
-            "Francisco Quezada Rivera - 20130815\n\n" +
-            "1.0.0 v", "Acerca De", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        int opcion = JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere salir?", "SALIR", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-        if(opcion == JOptionPane.YES_OPTION)
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        InicioSesion is = new InicioSesion(this, rootPaneCheckingEnabled);
-        is.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jbtnExptrExclMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnExptrExclMouseEntered
@@ -517,36 +421,51 @@ public class Interfaz extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]){
-        System.out.println("N");
-        Color color = new Color(255, 255, 255);
-        UIManager.put("MenuBar.background", new Color(255,255,255));
-        UIManager.put("nimbusBase", color);
-        
         try {
-            System.out.println("llego");
-            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+            Color texto = new Color(255,255,255);
+            Color fondoJMenuBar = new Color(26,36,46);
+            Color fondoJMenuBarHover = new Color(40, 51, 66);
+            
+            int menuSpacing = 5; // espacio en píxeles
+            Border emptyBorder = BorderFactory.createEmptyBorder(0, menuSpacing, 0, menuSpacing);
+            
+            Insets insets = new Insets(0, 0, 0, 0);
+            UIManager.put("MenuBar.margin", insets);
         
-        
+            UIManager.put( "MenuBar.background", fondoJMenuBar);
+            UIManager.put("MenuBar.borderBottom", Color.RED);
+            
+            UIManager.put ( "Menu.foreground"             , texto);
+            //UIManager.put("Menu.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+            UIManager.put ( "Menu.selectionBackground"    , texto);
+            UIManager.put("Menu.border", emptyBorder);
+            UIManager.put ( "Menu.selectionBackground"    , fondoJMenuBarHover);
+            UIManager.put ( "Menu.selectionForeground"    , texto);
+            
+            UIManager.put ( "MenuItem.background"         , fondoJMenuBarHover);
+            UIManager.put ( "MenuItem.foreground"         , texto);
+            UIManager.put ( "MenuItem.selectionBackground", fondoJMenuBar);
+            UIManager.put ( "MenuItem.selectionForeground", texto);
+            UIManager.put ( "MenuItem.border"             , BorderFactory.createEmptyBorder());
+            
+            
+            UIManager.put("Button.background", Color.WHITE);
+            //UIManager.put("Button.focus", Color.WHITE);
+            //UIManager.put("Button.select", Color.LIGHT_GRAY);
+            
+            
+            
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+   
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interfaz().setVisible(true);
+                Interfaz interfaz = new Interfaz();
+                interfaz.setVisible(true);
             }
         });
     }
@@ -554,22 +473,15 @@ public class Interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnEliminar;
