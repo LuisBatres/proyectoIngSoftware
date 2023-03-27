@@ -2,33 +2,27 @@ package appinventario;
 
 import BD.Conexion;
 import java.awt.Color;
-<<<<<<< HEAD
-import java.awt.Graphics;
 import java.awt.Insets;
+import java.io.IOException;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-=======
-import javax.swing.JOptionPane;
->>>>>>> parent of 02cf72c (btn exportar a excel + nva lib poi)
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.plaf.InsetsUIResource;
-import javax.swing.plaf.basic.BasicMenuUI;
 
-public class Interfaz extends javax.swing.JFrame{
 
-    Color buttonsColor        = new Color ( 255, 255, 255 );
-    Color buttonsColorEntered = new Color ( 190, 190, 190 );
-    Conexion con = new Conexion ();
+public class Interfaz extends javax.swing.JFrame {
+
+    Color buttonsColor = new Color(255, 255, 255);
+    Color buttonsColorEntered = new Color(190, 190, 190);
+
+    Conexion con = new Conexion();
     
-    public Interfaz () {
-        initComponents ();
+    public Interfaz() {
+        initComponents();
         JMenuBarPers men = new JMenuBarPers ( this );
-        con.getConexion ();     
+        con.getConexion();
     }
     
-    @SuppressWarnings( "unchecked" )
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -52,18 +46,7 @@ public class Interfaz extends javax.swing.JFrame{
         jbtnNuevo = new javax.swing.JButton();
         jbtnModificar = new javax.swing.JButton();
         jbtnEliminar = new javax.swing.JButton();
-<<<<<<< HEAD
-=======
-        jPanel3 = new javax.swing.JPanel();
-        jLabelArchivo = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jMenuBar = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
->>>>>>> parent of 02cf72c (btn exportar a excel + nva lib poi)
+        jbtnExptrExcl = new javax.swing.JButton();
 
         jMenu3.setText("jMenu3");
 
@@ -87,10 +70,9 @@ public class Interfaz extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(240, 240, 240));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(25, 34, 43));
 
@@ -252,61 +234,24 @@ public class Interfaz extends javax.swing.JFrame{
             }
         });
 
-<<<<<<< HEAD
-=======
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setMaximumSize(new java.awt.Dimension(32767, 15));
-        jPanel3.setMinimumSize(new java.awt.Dimension(100, 15));
-        jPanel3.setPreferredSize(new java.awt.Dimension(518, 10));
-
-        jLabelArchivo.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelArchivo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelArchivo.setText("Archivo");
-        jLabelArchivo.setComponentPopupMenu(jPopupMenu1);
-        jLabelArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabelArchivo.setOpaque(true);
-        jLabelArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelArchivoMouseClicked(evt);
-            }
+        jbtnExptrExcl.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        jbtnExptrExcl.setText("Exportar Excel");
+        jbtnExptrExcl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtnExptrExcl.setFocusPainted(false);
+        jbtnExptrExcl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelArchivoMouseEntered(evt);
+                jbtnExptrExclMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelArchivoMouseExited(evt);
+                jbtnExptrExclMouseExited(evt);
+            }
+        });
+        jbtnExptrExcl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnExptrExclActionPerformed(evt);
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Acerca de");
-        jLabel4.setOpaque(true);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabelArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 558, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
->>>>>>> parent of 02cf72c (btn exportar a excel + nva lib poi)
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -318,56 +263,26 @@ public class Interfaz extends javax.swing.JFrame{
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< HEAD
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(356, 356, 356)
+                                .addGap(297, 297, 297)
                                 .addComponent(jLabel2))
-=======
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(297, 297, 297)
-                                        .addComponent(jLabel2))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(75, 75, 75)
-                                        .addComponent(jbtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(78, 78, 78)
-                                        .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
->>>>>>> parent of 02cf72c (btn exportar a excel + nva lib poi)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
                                 .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(96, 96, 96)
+                                .addGap(75, 75, 75)
                                 .addComponent(jbtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(98, 98, 98)
-                                .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(78, 78, 78)
+                                .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(jbtnExptrExcl))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< HEAD
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-=======
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -376,42 +291,93 @@ public class Interfaz extends javax.swing.JFrame{
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbtnExptrExcl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
->>>>>>> parent of 02cf72c (btn exportar a excel + nva lib poi)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 938, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 916, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnEliminarActionPerformed
+    private void jbtnProvedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProvedoresActionPerformed
+        //System.out.println(this.jMenuBar.getBackground());
+    }//GEN-LAST:event_jbtnProvedoresActionPerformed
 
-    private void jbtnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseExited
+    private void jbtnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVentasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnEliminarMouseExited
+    }//GEN-LAST:event_jbtnVentasActionPerformed
 
-    private void jbtnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseEntered
+    private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
+        //System.out.println(this.jMenuBar.getBackground());
+    }//GEN-LAST:event_jbtnProductosActionPerformed
+
+    private void jbtnProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseEntered
+        this.jbtnProductos.setBackground(buttonsColorEntered);
+    }//GEN-LAST:event_jbtnProductosMouseEntered
+
+    private void jbtnProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseExited
+        this.jbtnProductos.setBackground(buttonsColor);
+    }//GEN-LAST:event_jbtnProductosMouseExited
+
+    private void jbtnProvedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProvedoresMouseEntered
+        this.jbtnProvedores.setBackground(buttonsColorEntered);
+    }//GEN-LAST:event_jbtnProvedoresMouseEntered
+
+    private void jbtnProvedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProvedoresMouseExited
+        this.jbtnProvedores.setBackground(buttonsColor);
+    }//GEN-LAST:event_jbtnProvedoresMouseExited
+
+    private void jbtnVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnVentasMouseEntered
+        this.jbtnVentas.setBackground(buttonsColorEntered);
+    }//GEN-LAST:event_jbtnVentasMouseEntered
+
+    private void jbtnVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnVentasMouseExited
+        this.jbtnVentas.setBackground(buttonsColor);
+    }//GEN-LAST:event_jbtnVentasMouseExited
+
+    private void jbtnNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnEliminarMouseEntered
+    }//GEN-LAST:event_jbtnNuevoMouseEntered
+
+    private void jbtnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnNuevoMouseExited
+
+    private void jbtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoActionPerformed
+        // TODO add your handling code here:
+        /*
+        nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
+        np.setVisible(true);*/
+        
+        
+        NMProvedor provedor = new NMProvedor(this, rootPaneCheckingEnabled);
+        provedor.setVisible(true);
+    }//GEN-LAST:event_jbtnNuevoActionPerformed
+
+    private void jbtnModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnModificarMouseEntered
+
+    private void jbtnModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnModificarMouseExited
 
     private void jbtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModificarActionPerformed
         // TODO add your handling code here:
@@ -419,88 +385,37 @@ public class Interfaz extends javax.swing.JFrame{
         mp.setVisible(true);
     }//GEN-LAST:event_jbtnModificarActionPerformed
 
-    private void jbtnModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseExited
+    private void jbtnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnModificarMouseExited
+    }//GEN-LAST:event_jbtnEliminarMouseEntered
 
-    private void jbtnModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseEntered
+    private void jbtnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnModificarMouseEntered
+    }//GEN-LAST:event_jbtnEliminarMouseExited
 
-    private void jbtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoActionPerformed
+    private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
         // TODO add your handling code here:
-        /*
-        nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
-        np.setVisible(true);*/
+    }//GEN-LAST:event_jbtnEliminarActionPerformed
 
-        NMProvedor provedor = new NMProvedor(this, rootPaneCheckingEnabled);
-        provedor.setVisible(true);
-    }//GEN-LAST:event_jbtnNuevoActionPerformed
-
-    private void jbtnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseExited
+    private void jbtnExptrExclMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnNuevoMouseExited
+    }//GEN-LAST:event_jbtnExptrExclMouseEntered
 
-    private void jbtnNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseEntered
+    private void jbtnExptrExclMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnNuevoMouseEntered
+    }//GEN-LAST:event_jbtnExptrExclMouseExited
 
-    private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
-        //System.out.println(this.jMenuBar.getBackground());
-    }//GEN-LAST:event_jbtnProductosActionPerformed
-
-    private void jbtnProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseExited
-        this.jbtnProductos.setBackground(buttonsColor);
-    }//GEN-LAST:event_jbtnProductosMouseExited
-
-    private void jbtnProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseEntered
-        this.jbtnProductos.setBackground(buttonsColorEntered);
-    }//GEN-LAST:event_jbtnProductosMouseEntered
-
-    private void jbtnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVentasActionPerformed
+    private void jbtnExptrExclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExptrExclActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnVentasActionPerformed
+        ExportarExcel obj;
 
-<<<<<<< HEAD
-    private void jbtnVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnVentasMouseExited
-        this.jbtnVentas.setBackground(buttonsColor);
-    }//GEN-LAST:event_jbtnVentasMouseExited
-
-    private void jbtnVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnVentasMouseEntered
-        this.jbtnVentas.setBackground(buttonsColorEntered);
-    }//GEN-LAST:event_jbtnVentasMouseEntered
-
-    private void jbtnProvedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProvedoresActionPerformed
-        //System.out.println(this.jMenuBar.getBackground());
-    }//GEN-LAST:event_jbtnProvedoresActionPerformed
-
-    private void jbtnProvedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProvedoresMouseExited
-        this.jbtnProvedores.setBackground(buttonsColor);
-    }//GEN-LAST:event_jbtnProvedoresMouseExited
-
-    private void jbtnProvedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProvedoresMouseEntered
-        this.jbtnProvedores.setBackground(buttonsColorEntered);
-    }//GEN-LAST:event_jbtnProvedoresMouseEntered
-=======
-    private void jLabelArchivoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelArchivoMouseEntered
-        this.jLabelArchivo.setForeground(new Color(255,255,255));
-        this.jPopupMenu1.setVisible(true);
-    }//GEN-LAST:event_jLabelArchivoMouseEntered
-
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        
-    }//GEN-LAST:event_jLabel4MouseEntered
-
-    private void jLabelArchivoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelArchivoMouseExited
-        this.jLabelArchivo.setBackground(new Color(255,255,255));
-        this.jLabelArchivo.setForeground(new Color(0,0,0));
-    }//GEN-LAST:event_jLabelArchivoMouseExited
-
-    private void jLabelArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelArchivoMouseClicked
-        
-        
-    }//GEN-LAST:event_jLabelArchivoMouseClicked
->>>>>>> parent of 02cf72c (btn exportar a excel + nva lib poi)
+        try {
+            obj = new ExportarExcel();
+            obj.exportarExcel(tblProductos);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+    }//GEN-LAST:event_jbtnExptrExclActionPerformed
 
     /**
      * @param args the command line arguments
@@ -508,7 +423,7 @@ public class Interfaz extends javax.swing.JFrame{
     public static void main(String args[]){
         try {
             Color texto = new Color(255,255,255);
-            Color fondoJMenuBar = new Color(25,34,43);
+            Color fondoJMenuBar = new Color(26,36,46);
             Color fondoJMenuBarHover = new Color(40, 51, 66);
             
             int menuSpacing = 5; // espacio en píxeles
@@ -534,6 +449,11 @@ public class Interfaz extends javax.swing.JFrame{
             UIManager.put ( "MenuItem.border"             , BorderFactory.createEmptyBorder());
             
             
+            UIManager.put("Button.background", Color.WHITE);
+            //UIManager.put("Button.focus", Color.WHITE);
+            //UIManager.put("Button.select", Color.LIGHT_GRAY);
+            
+            
             
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -553,13 +473,6 @@ public class Interfaz extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-<<<<<<< HEAD
-=======
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabelArchivo;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
->>>>>>> parent of 02cf72c (btn exportar a excel + nva lib poi)
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -572,6 +485,7 @@ public class Interfaz extends javax.swing.JFrame{
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnEliminar;
+    private javax.swing.JButton jbtnExptrExcl;
     private javax.swing.JButton jbtnModificar;
     private javax.swing.JButton jbtnNuevo;
     private javax.swing.JButton jbtnProductos;
@@ -579,7 +493,4 @@ public class Interfaz extends javax.swing.JFrame{
     private javax.swing.JButton jbtnVentas;
     private javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
-}    
-
-
-
+}
