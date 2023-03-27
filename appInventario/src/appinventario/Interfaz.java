@@ -285,7 +285,6 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -316,95 +315,6 @@ public class Interfaz extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnProvedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProvedoresActionPerformed
-        //System.out.println(this.jMenuBar.getBackground());
-    }//GEN-LAST:event_jbtnProvedoresActionPerformed
-
-    private void jbtnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVentasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnVentasActionPerformed
-
-    private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
-        //System.out.println(this.jMenuBar.getBackground());
-    }//GEN-LAST:event_jbtnProductosActionPerformed
-
-    private void jbtnProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseEntered
-        this.jbtnProductos.setBackground(buttonsColorEntered);
-    }//GEN-LAST:event_jbtnProductosMouseEntered
-
-    private void jbtnProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseExited
-        this.jbtnProductos.setBackground(buttonsColor);
-    }//GEN-LAST:event_jbtnProductosMouseExited
-
-    private void jbtnProvedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProvedoresMouseEntered
-        this.jbtnProvedores.setBackground(buttonsColorEntered);
-    }//GEN-LAST:event_jbtnProvedoresMouseEntered
-
-    private void jbtnProvedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProvedoresMouseExited
-        this.jbtnProvedores.setBackground(buttonsColor);
-    }//GEN-LAST:event_jbtnProvedoresMouseExited
-
-    private void jbtnVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnVentasMouseEntered
-        this.jbtnVentas.setBackground(buttonsColorEntered);
-    }//GEN-LAST:event_jbtnVentasMouseEntered
-
-    private void jbtnVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnVentasMouseExited
-        this.jbtnVentas.setBackground(buttonsColor);
-    }//GEN-LAST:event_jbtnVentasMouseExited
-
-    private void jbtnNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnNuevoMouseEntered
-
-    private void jbtnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnNuevoMouseExited
-
-    private void jbtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoActionPerformed
-        // TODO add your handling code here:
-        /*
-        nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
-        np.setVisible(true);*/
-        
-        
-        NMProvedor provedor = new NMProvedor(this, rootPaneCheckingEnabled);
-        provedor.setVisible(true);
-    }//GEN-LAST:event_jbtnNuevoActionPerformed
-
-    private void jbtnModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnModificarMouseEntered
-
-    private void jbtnModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnModificarMouseExited
-
-    private void jbtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModificarActionPerformed
-        // TODO add your handling code here:
-        modificarProducto mp = new modificarProducto(this, rootPaneCheckingEnabled);
-        mp.setVisible(true);
-    }//GEN-LAST:event_jbtnModificarActionPerformed
-
-    private void jbtnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnEliminarMouseEntered
-
-    private void jbtnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnEliminarMouseExited
-
-    private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnEliminarActionPerformed
-
-    private void jbtnExptrExclMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnExptrExclMouseEntered
-
-    private void jbtnExptrExclMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnExptrExclMouseExited
-
     private void jbtnExptrExclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExptrExclActionPerformed
         // TODO add your handling code here:
         ExportarExcel obj;
@@ -416,6 +326,94 @@ public class Interfaz extends javax.swing.JFrame {
             System.out.println("Error: " + ex);
         }
     }//GEN-LAST:event_jbtnExptrExclActionPerformed
+
+    private void jbtnExptrExclMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnExptrExclMouseExited
+
+    private void jbtnExptrExclMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnExptrExclMouseEntered
+
+    private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnEliminarActionPerformed
+
+    private void jbtnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnEliminarMouseExited
+
+    private void jbtnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnEliminarMouseEntered
+
+    private void jbtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModificarActionPerformed
+        // TODO add your handling code here:
+        modificarProducto mp = new modificarProducto(this, rootPaneCheckingEnabled);
+        mp.setVisible(true);
+    }//GEN-LAST:event_jbtnModificarActionPerformed
+
+    private void jbtnModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnModificarMouseExited
+
+    private void jbtnModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnModificarMouseEntered
+
+    private void jbtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoActionPerformed
+        // TODO add your handling code here:
+        /*
+        nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
+        np.setVisible(true);*/
+
+        NMProvedor provedor = new NMProvedor(this, rootPaneCheckingEnabled);
+        provedor.setVisible(true);
+    }//GEN-LAST:event_jbtnNuevoActionPerformed
+
+    private void jbtnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnNuevoMouseExited
+
+    private void jbtnNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnNuevoMouseEntered
+
+    private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
+        //System.out.println(this.jMenuBar.getBackground());
+    }//GEN-LAST:event_jbtnProductosActionPerformed
+
+    private void jbtnProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseExited
+        this.jbtnProductos.setBackground(buttonsColor);
+    }//GEN-LAST:event_jbtnProductosMouseExited
+
+    private void jbtnProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseEntered
+        this.jbtnProductos.setBackground(buttonsColorEntered);
+    }//GEN-LAST:event_jbtnProductosMouseEntered
+
+    private void jbtnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVentasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnVentasActionPerformed
+
+    private void jbtnVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnVentasMouseExited
+        this.jbtnVentas.setBackground(buttonsColor);
+    }//GEN-LAST:event_jbtnVentasMouseExited
+
+    private void jbtnVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnVentasMouseEntered
+        this.jbtnVentas.setBackground(buttonsColorEntered);
+    }//GEN-LAST:event_jbtnVentasMouseEntered
+
+    private void jbtnProvedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProvedoresActionPerformed
+        //System.out.println(this.jMenuBar.getBackground());
+    }//GEN-LAST:event_jbtnProvedoresActionPerformed
+
+    private void jbtnProvedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProvedoresMouseExited
+        this.jbtnProvedores.setBackground(buttonsColor);
+    }//GEN-LAST:event_jbtnProvedoresMouseExited
+
+    private void jbtnProvedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProvedoresMouseEntered
+        this.jbtnProvedores.setBackground(buttonsColorEntered);
+    }//GEN-LAST:event_jbtnProvedoresMouseEntered
 
     /**
      * @param args the command line arguments
