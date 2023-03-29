@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/franc/OneDrive/Documentos/GitHub/proyectoIngSoftware/appInventario/src/appinventario/nuevoProducto.java</file>
-            <file>file:/C:/Users/franc/OneDrive/Documentos/GitHub/proyectoIngSoftware/appInventario/src/BD/BD.java</file>
-            <file>file:/C:/Users/franc/OneDrive/Documentos/GitHub/proyectoIngSoftware/appInventario/src/appinventario/Empresa.java</file>
-            <file>file:/C:/Users/franc/OneDrive/Documentos/GitHub/proyectoIngSoftware/appInventario/src/appinventario/InicioSesion.java</file>
-            <file>file:/C:/Users/franc/OneDrive/Documentos/GitHub/proyectoIngSoftware/appInventario/src/appinventario/Provedor.java</file>
-            <file>file:/C:/Users/franc/OneDrive/Documentos/GitHub/proyectoIngSoftware/appInventario/src/appinventario/Interfaz.java</file>
-            <file>file:/C:/Users/franc/OneDrive/Documentos/GitHub/proyectoIngSoftware/appInventario/src/BD/Conexion.java</file>
+            <file>file:/C:/Users/franc/GitHub/proyectoIngSoftware/appInventario/src/appinventario/Tabla.java</file>
+            <file>file:/C:/Users/franc/GitHub/proyectoIngSoftware/appInventario/src/BD/BD.java</file>
+            <file>file:/C:/Users/franc/GitHub/proyectoIngSoftware/appInventario/src/appinventario/ProductoVenta.java</file>
+            <file>file:/C:/Users/franc/GitHub/proyectoIngSoftware/appInventario/src/appinventario/Interfaz.java</file>
+            <file>file:/C:/Users/franc/GitHub/proyectoIngSoftware/appInventario/src/appinventario/InicioSesion.java</file>
+            <file>file:/C:/Users/franc/GitHub/proyectoIngSoftware/appInventario/src/appinventario/JMenuBarPers.java</file>
         </group>
     </open-files>
 </project-private>

@@ -2,9 +2,12 @@ package appinventario;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.KeyEvent;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 public class InicioSesion extends javax.swing.JDialog {
 
@@ -165,24 +168,43 @@ public class InicioSesion extends javax.swing.JDialog {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Color color = new Color(255, 255, 255);
-        UIManager.put("nimbusBase", color);
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
+            Color texto = new Color(255,255,255);
+            Color fondoJMenuBar = new Color(26,36,46);
+            Color fondoJMenuBarHover = new Color(40, 51, 66);
+            
+            int menuSpacing = 5; // espacio en píxeles
+            Border emptyBorder = BorderFactory.createEmptyBorder(0, menuSpacing, 0, menuSpacing);
+            
+            Insets insets = new Insets(0, 0, 0, 0);
+            UIManager.put("MenuBar.margin", insets);
+        
+            UIManager.put( "MenuBar.background", fondoJMenuBar);
+            UIManager.put("MenuBar.borderBottom", Color.RED);
+            
+            UIManager.put ( "Menu.foreground"             , texto);
+            //UIManager.put("Menu.contentMargins", new InsetsUIResource(0, 0, 0, 0));
+            UIManager.put ( "Menu.selectionBackground"    , texto);
+            UIManager.put("Menu.border", emptyBorder);
+            UIManager.put ( "Menu.selectionBackground"    , fondoJMenuBarHover);
+            UIManager.put ( "Menu.selectionForeground"    , texto);
+            
+            UIManager.put ( "MenuItem.background"         , fondoJMenuBarHover);
+            UIManager.put ( "MenuItem.foreground"         , texto);
+            UIManager.put ( "MenuItem.selectionBackground", fondoJMenuBar);
+            UIManager.put ( "MenuItem.selectionForeground", texto);
+            UIManager.put ( "MenuItem.border"             , BorderFactory.createEmptyBorder());
+            
+            
+            UIManager.put("Button.background", Color.WHITE);
+            //UIManager.put("Button.focus", Color.WHITE);
+            //UIManager.put("Button.select", Color.LIGHT_GRAY);
+            
+            
+            
+        } catch (Exception ex) {
             java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        } 
         //</editor-fold>
 
         /* Create and display the dialog */
