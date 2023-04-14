@@ -234,6 +234,10 @@ public class nuevoProducto extends javax.swing.JDialog {
             }
         });
     }
+    
+    public void setinfo(String codigo) {
+        jtxtCodigo.setText(codigo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

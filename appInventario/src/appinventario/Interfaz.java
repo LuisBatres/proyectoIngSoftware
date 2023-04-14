@@ -16,7 +16,11 @@ public class Interfaz extends javax.swing.JFrame {
     Color buttonsColor = new Color(255, 255, 255);
     Color buttonsColorEntered = new Color(190, 190, 190);
     
+    int opc = 0;
+    
     DefaultTableModel modelo;
+    
+    
 
     Conexion con = new Conexion();
     BD bd = new BD();
@@ -26,7 +30,7 @@ public class Interfaz extends javax.swing.JFrame {
         JMenuBarPers men = new JMenuBarPers ( this );
         con.getConexion();
         
-        modelo = (DefaultTableModel)tblProductos.getModel();
+        modelo = (DefaultTableModel)table.getModel();
         
         bd.muestraProductos(modelo);
     }
@@ -49,7 +53,7 @@ public class Interfaz extends javax.swing.JFrame {
         jbtnVentas = new javax.swing.JButton();
         jbtnProductos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblProductos = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jbtnNuevo = new javax.swing.JButton();
@@ -163,7 +167,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -179,7 +183,7 @@ public class Interfaz extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblProductos);
+        jScrollPane1.setViewportView(table);
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         jLabel1.setText("Productos");
@@ -332,7 +336,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         try {
             obj = new ExportarExcel();
-            obj.exportarExcel(tblProductos);
+            obj.exportarExcel(table);
         } catch (IOException ex) {
             System.out.println("Error: " + ex);
         }
@@ -360,8 +364,19 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jbtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModificarActionPerformed
         // TODO add your handling code here:
-        modificarProducto mp = new modificarProducto(this, rootPaneCheckingEnabled);
-        mp.setVisible(true);
+       int indice = table.getSelectedRow();
+        switch (opc) {
+            case 1:
+                nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
+                String codigo = table.getValueAt(indice, 1).toString();
+                np.setinfo(codigo);
+                np.setVisible(true);
+                break;
+            default:
+                throw new AssertionError();
+        }
+       
+       
     }//GEN-LAST:event_jbtnModificarActionPerformed
 
     private void jbtnModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseExited
@@ -380,6 +395,14 @@ public class Interfaz extends javax.swing.JFrame {
 
         NMProvedor provedor = new NMProvedor(this, rootPaneCheckingEnabled);
         provedor.setVisible(true);
+        
+        switch (opc) {
+            case 1:
+                
+                break;
+            default:
+                throw new AssertionError();
+        }
     }//GEN-LAST:event_jbtnNuevoActionPerformed
 
     private void jbtnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseExited
@@ -393,6 +416,8 @@ public class Interfaz extends javax.swing.JFrame {
     private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
         //System.out.println(this.jMenuBar.getBackground());
         bd.muestraProductos(modelo);
+        opc = 1;
+        
     }//GEN-LAST:event_jbtnProductosActionPerformed
 
     private void jbtnProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseExited
@@ -502,6 +527,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jbtnProductos;
     private javax.swing.JButton jbtnProvedores;
     private javax.swing.JButton jbtnVentas;
-    private javax.swing.JTable tblProductos;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
