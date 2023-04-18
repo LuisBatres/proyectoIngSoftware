@@ -286,11 +286,11 @@ public class BD {
             switch (value) {
                 case 0 -> {
                     while (rs.next()) {
-                        String fecha         = rs.getString(2);
+                        String fecha          = rs.getString(2);
                         String subtotal       = rs.getString(3);
                         String total          = rs.getString(4);
-                        String codigo        = rs.getString(5);
-                        int prodTotal        = rs.getInt(7);
+                        String codigo         = rs.getString(5);
+                        int prodTotal         = rs.getInt(7);
                         
                         Object[] nuevoRenglon = {"#", fecha, subtotal, total, codigo, prodTotal};
                         modelo.addRow(nuevoRenglon);
@@ -298,14 +298,14 @@ public class BD {
                 }
                 case 1 -> {
                     while (rs.next()) {
-                        String fecha         = rs.getString(2);
+                        String fecha          = rs.getString(2);
                         String subtotal       = rs.getString(3);
                         String total          = rs.getString(4);
-                        String codigo        = rs.getString(5);
-                        int prodCantidad        = rs.getInt(6);
-                        int prodTotal        = rs.getInt(7);
+                        String codigo         = rs.getString(5);
+                        int prodCantidad      = rs.getInt(6);
+                        int prodTotal         = rs.getInt(7);
                         
-                        Object[] nuevoRenglon = {"#", fecha, subtotal, total, codigo, prodTotal};
+                        Object[] nuevoRenglon = {"#", fecha, subtotal, total, codigo, prodCantidad, prodTotal};
                         modelo.addRow(nuevoRenglon);
                     }
                 }

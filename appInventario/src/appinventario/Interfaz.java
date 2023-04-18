@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Insets;
 import java.io.IOException;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
@@ -16,12 +17,10 @@ public class Interfaz extends javax.swing.JFrame {
     Color buttonsColor = new Color(255, 255, 255);
     Color buttonsColorEntered = new Color(190, 190, 190);
     
-    int opc = 0;
+    int opc = 1;
     
     DefaultTableModel modelo;
     
-    
-
     Conexion con = new Conexion();
     BD bd = new BD();
     
@@ -54,7 +53,7 @@ public class Interfaz extends javax.swing.JFrame {
         jbtnProductos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jlblTitulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jbtnNuevo = new javax.swing.JButton();
         jbtnModificar = new javax.swing.JButton();
@@ -185,8 +184,8 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table);
 
-        jLabel1.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
-        jLabel1.setText("Productos");
+        jlblTitulo.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        jlblTitulo.setText("Productos");
 
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -276,7 +275,7 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jlblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(297, 297, 297)
                                 .addComponent(jLabel2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -299,7 +298,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jlblTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,7 +330,6 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnExptrExclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExptrExclActionPerformed
-        // TODO add your handling code here:
         ExportarExcel obj;
 
         try {
@@ -343,62 +341,99 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnExptrExclActionPerformed
 
     private void jbtnExptrExclMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseExited
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtnExptrExclMouseExited
 
     private void jbtnExptrExclMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseEntered
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtnExptrExclMouseEntered
 
     private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtnEliminarActionPerformed
 
     private void jbtnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseExited
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtnEliminarMouseExited
 
     private void jbtnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseEntered
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtnEliminarMouseEntered
 
     private void jbtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModificarActionPerformed
-        // TODO add your handling code here:
-       int indice = table.getSelectedRow();
-        switch (opc) {
-            case 1:
-                nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
-                String codigo = table.getValueAt(indice, 1).toString();
-                np.setinfo(codigo);
-                np.setVisible(true);
-                break;
-            default:
-                throw new AssertionError();
-        }
+        int indice = table.getSelectedRow();
+        
+        //try{
+            switch (opc) {
+                case 1:
+                    nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
+                    np.setTitle("Modificar Producto");
+
+                    String codigo = table.getValueAt(indice, 1).toString();
+                    String nombre = table.getValueAt(indice, 2).toString();
+                    String marca = table.getValueAt(indice, 3).toString();
+                    float pC = Float.parseFloat(table.getValueAt(indice, 4)+"");
+                    float pV = Float.parseFloat(table.getValueAt(indice, 5)+"");
+                    int cant = Integer.parseInt(table.getValueAt(indice, 6)+"");
+
+                    np.setInfo(codigo,nombre, marca, pC, pV, cant);
+                    np.blockPK();
+
+                    np.setVisible(true);
+                    break;
+                    
+                case 2:
+                    ModificarProvedor mod = new ModificarProvedor(this, rootPaneCheckingEnabled);
+
+                    String nomP = table.getValueAt(indice, 1).toString();
+                    String telP = table.getValueAt(indice, 2).toString();
+                    String emailP = table.getValueAt(indice, 3).toString();
+                    String fechaP = table.getValueAt(indice, 4).toString();
+
+                    mod.setInfo(nomP, telP, emailP, fechaP);
+
+                    mod.setVisible(true);
+                    break;
+                    
+                case 3:
+                    nuevaVenta nv = new nuevaVenta(this, rootPaneCheckingEnabled);
+                    nv.setTitle("Modificar Venta");
+                    
+                    
+                    
+                    nv.setVisible(true);
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        /*}catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun elemento de la tabla", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }*/
        
        
     }//GEN-LAST:event_jbtnModificarActionPerformed
 
     private void jbtnModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseExited
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtnModificarMouseExited
 
     private void jbtnModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseEntered
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtnModificarMouseEntered
 
     private void jbtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoActionPerformed
-        // TODO add your handling code here:
-        /*
-        nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
-        np.setVisible(true);*/
-
-        NMProvedor provedor = new NMProvedor(this, rootPaneCheckingEnabled);
-        provedor.setVisible(true);
-        
         switch (opc) {
             case 1:
-                
+                nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
+                np.setVisible(true);
+                break;
+            case 2:
+                NMProvedor prov = new NMProvedor(this, rootPaneCheckingEnabled);
+                prov.setVisible(true);
+                break;
+            case 3:
+                nuevaVenta nv = new nuevaVenta(this, rootPaneCheckingEnabled);
+                nv.setVisible(true);
                 break;
             default:
                 throw new AssertionError();
@@ -406,18 +441,17 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnNuevoActionPerformed
 
     private void jbtnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseExited
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtnNuevoMouseExited
 
     private void jbtnNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseEntered
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtnNuevoMouseEntered
 
     private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
-        //System.out.println(this.jMenuBar.getBackground());
         bd.muestraProductos(modelo);
         opc = 1;
-        
+        jlblTitulo.setText("Productos");
     }//GEN-LAST:event_jbtnProductosActionPerformed
 
     private void jbtnProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseExited
@@ -429,7 +463,9 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnProductosMouseEntered
 
     private void jbtnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVentasActionPerformed
-        // TODO add your handling code here:
+        jlblTitulo.setText("Ventas");
+        //bd.muestraVentaTabla(modelo, );
+        opc = 3;
     }//GEN-LAST:event_jbtnVentasActionPerformed
 
     private void jbtnVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnVentasMouseExited
@@ -441,8 +477,9 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnVentasMouseEntered
 
     private void jbtnProvedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProvedoresActionPerformed
-        //System.out.println(this.jMenuBar.getBackground());
+        jlblTitulo.setText("Provedores");
         bd.muestraProvedores(modelo);
+        opc = 2;
     }//GEN-LAST:event_jbtnProvedoresActionPerformed
 
     private void jbtnProvedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProvedoresMouseExited
@@ -453,9 +490,6 @@ public class Interfaz extends javax.swing.JFrame {
         this.jbtnProvedores.setBackground(buttonsColorEntered);
     }//GEN-LAST:event_jbtnProvedoresMouseEntered
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]){
         try {
             Color texto = new Color(255,255,255);
@@ -507,7 +541,6 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -527,6 +560,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jbtnProductos;
     private javax.swing.JButton jbtnProvedores;
     private javax.swing.JButton jbtnVentas;
+    private javax.swing.JLabel jlblTitulo;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

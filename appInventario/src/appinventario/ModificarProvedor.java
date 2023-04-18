@@ -3,26 +3,18 @@ package appinventario;
 import BD.BD;
 import javax.swing.JOptionPane;
 
-public class NMProvedor extends javax.swing.JDialog {
+public class ModificarProvedor extends javax.swing.JDialog {
 
-    public NMProvedor(java.awt.Frame parent, boolean modal) {
+    public ModificarProvedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public void setInfo(String nomP, String telP, String emailP, String fechaP,
-            String nomE/*, String giroE, String emailE, String telE, String domE*/){
-        
+    public void setInfo(String nomP, String telP, String emailP, String fechaP){      
         jtxtNombreProv.setText(nomP);
         jtxtTelefonoProv.setText(telP);
         jtxtEmailProv.setText(emailP);
         jtxtFechaCProv.setText(fechaP);
-        
-        jtxtNombreEmpresa.setText(nomE);
-        /*jtxtGiroEmpresa.setText(giroE);
-        jtxtEmailEmpresa.setText(emailE);
-        jtxtTelefonoEmpresa.setText(telE);
-        jtxtEmailEmpresa.setText(domE);*/
     }
 
     @SuppressWarnings("unchecked")
@@ -39,22 +31,11 @@ public class NMProvedor extends javax.swing.JDialog {
         jtxtFechaCProv = new javax.swing.JTextField();
         jtxtNombreProv = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jtxtEmailProv = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jtxtTelefonoEmpresa = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jtxtEmailEmpresa = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jtxtGiroEmpresa = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jtxtNombreEmpresa = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jtxtDomicilioEmpresa = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Nuevo Provedor");
+        setTitle("Modificar Provedor");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -82,43 +63,12 @@ public class NMProvedor extends javax.swing.JDialog {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Datos generales del provedor");
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Datos de la empresa");
-
         jLabel6.setText("Email:");
-
-        jtxtTelefonoEmpresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtTelefonoEmpresaActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Telefono:");
-
-        jLabel8.setText("Email:");
-
-        jLabel9.setText("Giro:");
-
-        jLabel10.setText("Nombre: ");
-
-        jLabel11.setText("Domicilio:");
-
-        jtxtDomicilioEmpresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtDomicilioEmpresaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(52, 52, 52)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
@@ -140,23 +90,12 @@ public class NMProvedor extends javax.swing.JDialog {
                     .addComponent(jtxtTelefonoProv, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addComponent(jtxtNombreProv, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
                 .addContainerGap(21, Short.MAX_VALUE))
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtxtTelefonoEmpresa)
-                    .addComponent(jtxtEmailEmpresa)
-                    .addComponent(jtxtGiroEmpresa)
-                    .addComponent(jtxtNombreEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(jtxtDomicilioEmpresa))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(52, 52, 52)
+                .addComponent(jButton2)
+                .addGap(81, 81, 81))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,35 +118,11 @@ public class NMProvedor extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtxtFechaCProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel9)
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel8)
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jtxtNombreEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(jtxtGiroEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(jtxtEmailEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(jtxtTelefonoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jtxtDomicilioEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,9 +133,7 @@ public class NMProvedor extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -235,37 +148,18 @@ public class NMProvedor extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jtxtTelefonoEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtTelefonoEmpresaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtTelefonoEmpresaActionPerformed
-
-    private void jtxtDomicilioEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtDomicilioEmpresaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtDomicilioEmpresaActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Empresa empresa = new Empresa();
         Provedor provedor = new Provedor();
         BD bd = new BD();
         
-        
-        empresa.setNombre(jtxtNombreEmpresa.getText());
-        empresa.setGiro(jtxtGiroEmpresa.getText());
-        empresa.setEmail(jtxtEmailEmpresa.getText());
-        empresa.setTelefono(jtxtTelefonoEmpresa.getText());
-        empresa.setDomicilio(jtxtDomicilioEmpresa.getText());
-        bd.insertaEmpresa(empresa);
-        
-        int idEmpresa = bd.getIdEmpresa(empresa.getNombre());
-        System.out.println(idEmpresa);
         provedor.setNombre(jtxtNombreProv.getText());
         provedor.setTelefono(jtxtTelefonoProv.getText());
         provedor.setEmail(jtxtEmailProv.getText());
         provedor.setFechaContrato(jtxtFechaCProv.getText());
-        provedor.setIdEmpresa(idEmpresa);
-        bd.insertaProvedor(provedor);
+        //bd update
        
-        JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Se guardo correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
         Interfaz inter = new Interfaz();
         bd.muestraProvedores(inter.modelo);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -284,14 +178,18 @@ public class NMProvedor extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NMProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NMProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NMProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NMProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarProvedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -300,7 +198,7 @@ public class NMProvedor extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                NMProvedor dialog = new NMProvedor(new javax.swing.JFrame(), true);
+                ModificarProvedor dialog = new ModificarProvedor(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -316,25 +214,14 @@ public class NMProvedor extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jtxtDomicilioEmpresa;
-    private javax.swing.JTextField jtxtEmailEmpresa;
     private javax.swing.JTextField jtxtEmailProv;
     private javax.swing.JTextField jtxtFechaCProv;
-    private javax.swing.JTextField jtxtGiroEmpresa;
-    private javax.swing.JTextField jtxtNombreEmpresa;
     private javax.swing.JTextField jtxtNombreProv;
-    private javax.swing.JTextField jtxtTelefonoEmpresa;
     private javax.swing.JTextField jtxtTelefonoProv;
     // End of variables declaration//GEN-END:variables
 }
