@@ -1,5 +1,7 @@
 package appinventario;
 
+import java.util.Date;
+
 public class Provedor {
     // Atributos
     private int    idProvedor;

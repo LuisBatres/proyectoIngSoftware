@@ -18,7 +18,7 @@ import mx.tecnm.util.Imagenes;
 public class JMenuBarPers extends JFrame implements ActionListener {
     private JMenuBar mb;
     private JMenu menuFile,menuAbout,menuCerrar,menuMinimizar;
-    private JMenuItem fileSalir,fileCerrarSesion,aboutVersion;
+    private JMenuItem fileSalir,fileCerrarSesion,aboutVersion, fileEmpresas;
     private JFrame frame;
     
     public JMenuBarPers(JFrame frame) {
@@ -37,6 +37,8 @@ public class JMenuBarPers extends JFrame implements ActionListener {
         menuFile.add(fileSalir);
         fileCerrarSesion = new JMenuItem("Cerrar sesion");
         menuFile.add(fileCerrarSesion);
+        fileEmpresas = new JMenuItem("Empresas");
+        menuFile.add(fileEmpresas);
         
         menuAbout = new JMenu("Acerca de");
         mb.add(menuAbout);
@@ -65,6 +67,7 @@ public class JMenuBarPers extends JFrame implements ActionListener {
         fileSalir.addActionListener(this);
         fileCerrarSesion.addActionListener(this);
         aboutVersion.addActionListener(this);
+        fileEmpresas.addActionListener(this);
         
         menuCerrar.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
@@ -82,9 +85,11 @@ public class JMenuBarPers extends JFrame implements ActionListener {
         aboutVersion.setPreferredSize(new Dimension(100,25)); // ******
         fileCerrarSesion.setPreferredSize(new Dimension(100,25)); // ******
         fileSalir.setPreferredSize(new Dimension(100,25)); // ******
+        fileEmpresas.setPreferredSize(new Dimension(100,25)); // ******
         
         fileSalir.setBorderPainted(false);
         fileCerrarSesion.setBorderPainted(false);
+        fileEmpresas.setBorderPainted(false);
         
         menuCerrar.setPreferredSize(new Dimension(30, 25));
         menuCerrar.setUI(new CustomMenuUI()); // Establecemos un MenuUI personalizado
@@ -101,6 +106,10 @@ public class JMenuBarPers extends JFrame implements ActionListener {
             frame.dispose();
             InicioSesion is = new InicioSesion(this, rootPaneCheckingEnabled);
             is.setVisible(true);
+        }
+        if (e.getSource()==fileEmpresas) {
+            interfazEmpresa ie = new interfazEmpresa(this, rootPaneCheckingEnabled);
+            ie.setVisible(true);
         }
         if (e.getSource()==aboutVersion) {
             JOptionPane.showMessageDialog(null,

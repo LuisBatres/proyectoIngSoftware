@@ -4,8 +4,8 @@ public class Venta {
     // Atributos
     private int    idVenta;
     private String fecha;
-    private float subtotal;
-    private float total;
+    private float  subtotal;
+    private float  total;
     
     // Constructores
     public Venta () {

@@ -14,21 +14,23 @@ import javax.swing.table.DefaultTableModel;
 
 public class Interfaz extends javax.swing.JFrame {
 
-    Color buttonsColor = new Color(255, 255, 255);
-    Color buttonsColorEntered = new Color(190, 190, 190);
+    Color buttonsColor = new Color(25, 34, 43);
+    Color buttonsColorEntered = new Color(26,36,46);
     
-    int opc = 1;
+    int opc = 1; // Opcion para verificar la posicion del panel lateral
+    /*
+        opc = 1 -> Productos
+        opc = 2 -> Provedores
+        opc = 3 -> Ventas
+    */
     
     DefaultTableModel modelo;
-    
     Conexion con = new Conexion();
     BD bd = new BD();
     
     public Interfaz() {
         initComponents();
         JMenuBarPers men = new JMenuBarPers ( this );
-        con.getConexion();
-        
         modelo = (DefaultTableModel)table.getModel();
         
         bd.muestraProductos(modelo);
@@ -88,8 +90,11 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(25, 34, 43));
 
+        jbtnProvedores.setBackground(new java.awt.Color(25, 34, 43));
         jbtnProvedores.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        jbtnProvedores.setForeground(new java.awt.Color(255, 255, 255));
         jbtnProvedores.setText("Provedores");
+        jbtnProvedores.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jbtnProvedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnProvedores.setFocusPainted(false);
         jbtnProvedores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -106,8 +111,11 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jbtnVentas.setBackground(new java.awt.Color(25, 34, 43));
         jbtnVentas.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        jbtnVentas.setForeground(new java.awt.Color(255, 255, 255));
         jbtnVentas.setText("Ventas");
+        jbtnVentas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jbtnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnVentas.setFocusPainted(false);
         jbtnVentas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -124,8 +132,11 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jbtnProductos.setBackground(new java.awt.Color(25, 34, 43));
         jbtnProductos.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        jbtnProductos.setForeground(new java.awt.Color(255, 255, 255));
         jbtnProductos.setText("Productos");
+        jbtnProductos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jbtnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnProductos.setFocusPainted(false);
         jbtnProductos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -146,23 +157,19 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnProvedores, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+            .addComponent(jbtnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jbtnProvedores, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+            .addComponent(jbtnVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jbtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jbtnProvedores, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(jbtnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110)
+                .addComponent(jbtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jbtnProvedores, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jbtnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -349,7 +356,28 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnExptrExclMouseEntered
 
     private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
-
+        int indice = table.getSelectedRow();
+  
+        try{
+            switch (opc) {
+                case 1:
+                    int codigo = Integer.parseInt(table.getValueAt(indice, 1).toString());
+                    bd.eliminaProducto(codigo);
+                    bd.muestraProductos(modelo);
+                    break;         
+                case 2:
+                    
+                    break;
+                    
+                case 3:
+                    
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun elemento de la tabla", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jbtnEliminarActionPerformed
 
     private void jbtnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseExited
@@ -366,8 +394,8 @@ public class Interfaz extends javax.swing.JFrame {
         //try{
             switch (opc) {
                 case 1:
-                    nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
-                    np.setTitle("Modificar Producto");
+                    formProducto prod = new formProducto(this, rootPaneCheckingEnabled);
+                    prod.setTitle("Modificar Producto");
 
                     String codigo = table.getValueAt(indice, 1).toString();
                     String nombre = table.getValueAt(indice, 2).toString();
@@ -375,28 +403,31 @@ public class Interfaz extends javax.swing.JFrame {
                     float pC = Float.parseFloat(table.getValueAt(indice, 4)+"");
                     float pV = Float.parseFloat(table.getValueAt(indice, 5)+"");
                     int cant = Integer.parseInt(table.getValueAt(indice, 6)+"");
-
-                    np.setInfo(codigo,nombre, marca, pC, pV, cant);
-                    np.blockPK();
-
-                    np.setVisible(true);
+                    String provedor = table.getValueAt(indice, 7).toString();
+                    
+                    prod.setInfo(codigo,nombre, marca, pC, pV, cant, provedor);
+                    prod.blockPK();
+                    
+                    prod.setVisible(true);
                     break;
                     
                 case 2:
-                    ModificarProvedor mod = new ModificarProvedor(this, rootPaneCheckingEnabled);
-
+                    formProvedor modProv = new formProvedor(this, rootPaneCheckingEnabled);
+                    modProv.setTitle("Modificar Provedor");
+                    
                     String nomP = table.getValueAt(indice, 1).toString();
                     String telP = table.getValueAt(indice, 2).toString();
                     String emailP = table.getValueAt(indice, 3).toString();
                     String fechaP = table.getValueAt(indice, 4).toString();
+                    String empresa = table.getValueAt(indice, 5).toString();
 
-                    mod.setInfo(nomP, telP, emailP, fechaP);
+                    modProv.setInfo(nomP, telP, emailP, fechaP, empresa);
 
-                    mod.setVisible(true);
+                    modProv.setVisible(true);
                     break;
                     
                 case 3:
-                    nuevaVenta nv = new nuevaVenta(this, rootPaneCheckingEnabled);
+                    formVenta nv = new formVenta(this, rootPaneCheckingEnabled);
                     nv.setTitle("Modificar Venta");
                     
                     
@@ -409,8 +440,6 @@ public class Interfaz extends javax.swing.JFrame {
         /*}catch(Exception ex){
             JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun elemento de la tabla", "ERROR", JOptionPane.ERROR_MESSAGE);
         }*/
-       
-       
     }//GEN-LAST:event_jbtnModificarActionPerformed
 
     private void jbtnModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseExited
@@ -424,15 +453,23 @@ public class Interfaz extends javax.swing.JFrame {
     private void jbtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoActionPerformed
         switch (opc) {
             case 1:
-                nuevoProducto np = new nuevoProducto(this, rootPaneCheckingEnabled);
-                np.setVisible(true);
+                if (bd.hayProvedores()) {
+                    formProducto np = new formProducto(this, rootPaneCheckingEnabled);
+                    np.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "No hay provedores");
+                }
                 break;
             case 2:
-                NMProvedor prov = new NMProvedor(this, rootPaneCheckingEnabled);
-                prov.setVisible(true);
+                if (bd.hayEmpresas()) {
+                    formProvedor prov = new formProvedor(this, rootPaneCheckingEnabled);
+                    prov.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "No hay provedores");
+                }
                 break;
             case 3:
-                nuevaVenta nv = new nuevaVenta(this, rootPaneCheckingEnabled);
+                formVenta nv = new formVenta(this, rootPaneCheckingEnabled);
                 nv.setVisible(true);
                 break;
             default:
@@ -449,8 +486,8 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnNuevoMouseEntered
 
     private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
-        bd.muestraProductos(modelo);
         opc = 1;
+        bd.muestraProductos(modelo);
         jlblTitulo.setText("Productos");
     }//GEN-LAST:event_jbtnProductosActionPerformed
 
@@ -463,9 +500,9 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnProductosMouseEntered
 
     private void jbtnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVentasActionPerformed
-        jlblTitulo.setText("Ventas");
-        //bd.muestraVentaTabla(modelo, );
         opc = 3;
+        jlblTitulo.setText("Ventas");
+        bd.muestraVenta(modelo);
     }//GEN-LAST:event_jbtnVentasActionPerformed
 
     private void jbtnVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnVentasMouseExited
@@ -477,9 +514,9 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnVentasMouseEntered
 
     private void jbtnProvedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProvedoresActionPerformed
+        opc = 2;
         jlblTitulo.setText("Provedores");
         bd.muestraProvedores(modelo);
-        opc = 2;
     }//GEN-LAST:event_jbtnProvedoresActionPerformed
 
     private void jbtnProvedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProvedoresMouseExited

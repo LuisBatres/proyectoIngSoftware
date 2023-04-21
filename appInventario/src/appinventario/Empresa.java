@@ -2,6 +2,7 @@ package appinventario;
 
 public class Empresa {
     // Atributos
+    private int    idEmpresa;
     private String nombre;
     private String giro;
     private String email;
@@ -10,19 +11,29 @@ public class Empresa {
     
     // Constructores
     public Empresa () {
+        idEmpresa     = 0;
         nombre        = "";
         giro          = "";
         email         = "";
         telefono      = "";
         domicilio     = "";
     }
-    
-    public Empresa ( String nombre, String giro, String email, String tel, String domicilio ) {
-        this.nombre        = nombre;
-        this.giro          = giro;
-        this.email         = email;
-        this.telefono      = tel;
-        this.domicilio     = domicilio;
+
+    public Empresa(int idEmpresa, String nombre, String giro, String email, String telefono, String domicilio) {
+        this.idEmpresa = idEmpresa;
+        this.nombre = nombre;
+        this.giro = giro;
+        this.email = email;
+        this.telefono = telefono;
+        this.domicilio = domicilio;
+    }
+
+    public int getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(int idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
     public String getNombre() {

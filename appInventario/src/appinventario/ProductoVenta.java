@@ -44,7 +44,7 @@ public class ProductoVenta {
     public float getProdTotal() {
         return prodTotal;
     }
-
+    
     public void setProdTotal(float prodTotal) {
         this.prodTotal = prodTotal;
     }

@@ -9,7 +9,7 @@ public class Conexion {
     
     public Connection getConexion () {
         String conexionUrl = "jdbc:sqlserver://localhost:1433;"
-                           + "database=tienda;"
+                           + "database=inventarios;"
                            + "user=sa;"
                            + "password=root;"
                            + "encrypt=false;";
