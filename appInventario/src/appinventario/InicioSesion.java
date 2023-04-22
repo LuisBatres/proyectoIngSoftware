@@ -165,9 +165,8 @@ public class InicioSesion extends javax.swing.JDialog {
             inter.setVisible(true);
         }
         else {
-            var ie = new interfazError2();
-            ie.setMensaje("Hola");
-            ie.setVisible(true);   
+            JOptionPane.showMessageDialog(rootPane, "Usuario y/o contraseña incorrectos", "No autenticado",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonIniciaActionPerformed
 

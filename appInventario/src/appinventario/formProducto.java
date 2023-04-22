@@ -192,14 +192,15 @@ public class formProducto extends javax.swing.JDialog {
         if (this.getTitle().equals("Modificar Producto")) {
             bd.actualizaProducto(obj);
             JOptionPane.showMessageDialog(null, "Se guardo correctamente","ACTUALIZADO",JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         }
         else { 
             bd.insertaProducto(obj);
             JOptionPane.showMessageDialog(null, "Se guardo correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         }
          
-        Interfaz inter = new Interfaz();
-        bd.muestraProductos(inter.modelo);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {

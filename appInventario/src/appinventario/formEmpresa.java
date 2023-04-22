@@ -162,8 +162,14 @@ public class formEmpresa extends javax.swing.JDialog {
         empresa.setEmail(jtxtEmailEmpresa.getText());
         empresa.setTelefono(jtxtTelefonoEmpresa.getText());
         empresa.setDomicilio(jtxtDomicilioEmpresa.getText());
-        bd.insertaEmpresa(empresa);
-
+        
+        String opcion = this.getTitle();
+        if (opcion.equals("Nuevo Producto")) {
+            bd.insertaEmpresa(empresa);
+        } else {
+            bd.actualizaEmpresa(empresa);
+        }
+        
         JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -175,6 +181,16 @@ public class formEmpresa extends javax.swing.JDialog {
             this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void setInfo(String nombre, String giro, String email, String telefono, String domicilio) {
+        jtxtNombreEmpresa.setText(nombre);
+        jtxtGiroEmpresa.setText(giro);
+        jtxtEmailEmpresa.setText(email);
+        jtxtTelefonoEmpresa.setText(telefono);
+        jtxtDomicilioEmpresa.setText(domicilio);
+        
+        jtxtNombreEmpresa.setEditable(false);
+    }
+    
     public static void main(String args[]) {
         Color color = new Color(255, 255, 255);
         UIManager.put("nimbusBase", color);
@@ -212,16 +228,6 @@ public class formEmpresa extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-    }
-    
-    public void setInfo(String nombre, String giro, String email, String telefono, String domicilio) {
-        jtxtNombreEmpresa.setText(nombre);
-        jtxtGiroEmpresa.setText(giro);
-        jtxtEmailEmpresa.setText(email);
-        jtxtTelefonoEmpresa.setText(telefono);
-        jtxtDomicilioEmpresa.setText(domicilio);
-        
-        jtxtNombreEmpresa.setEditable(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

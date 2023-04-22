@@ -182,11 +182,12 @@ public class BD {
             String query = "SELECT * FROM productos";
 
             conexion = con.getConexion();
-            st = sta = conexion.createStatement();
+            st = conexion.createStatement();
+            sta = conexion.createStatement();
             rs = st.executeQuery(query);
 
             while (rs.next()) {
-                String codigo      = rs.getString ( 2 );
+                int codigo         = rs.getInt    ( 2 );
                 String nombre      = rs.getString ( 3 );
                 String marca       = rs.getString ( 4 );
                 float precioCompra = rs.getFloat  ( 5 );
@@ -219,6 +220,14 @@ public class BD {
     }
     
     public void muestraEmpresas(DefaultTableModel modelo) {
+        modelo.setNumRows     (0            );
+        modelo.setColumnCount (0          );
+        modelo.addColumn      ("#"         );
+        modelo.addColumn      ("Nombre"    );
+        modelo.addColumn      ("Giro"      );
+        modelo.addColumn      ("Email"     );
+        modelo.addColumn      ("Telefono"  );
+        modelo.addColumn      ("Domicilio" );
         try {
             String query = "SELECT * FROM empresas";
 
@@ -644,6 +653,31 @@ public class BD {
     public boolean hayEmpresas() {
         try {
             String query = "SELECT * FROM empresas;";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            if (rs.next()) {
+                return true;
+            } 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
+    public boolean hayProductos() {
+        try {
+            String query = "SELECT * FROM productos;";
 
             conexion = con.getConexion();
             st = conexion.createStatement();

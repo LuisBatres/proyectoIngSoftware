@@ -6,16 +6,25 @@ import java.awt.Color;
 import java.awt.Insets;
 import java.io.IOException;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
+import mx.tecnm.util.Imagenes;
 
 
 public class Interfaz extends javax.swing.JFrame {
 
+    Color colorBlack = new Color(0,0,0);
+    Color colorWithe = new Color(255, 255, 255);
     Color buttonsColor = new Color(25, 34, 43);
     Color buttonsColorEntered = new Color(26,36,46);
+    Color buttonEliminar = new Color(255,111,111);
+    Color buttonExport = new Color(109,196,109);
+    Color buttonsColorEnteredTop = new Color(239,239,239);
     
     int opc = 1; // Opcion para verificar la posicion del panel lateral
     /*
@@ -34,6 +43,10 @@ public class Interfaz extends javax.swing.JFrame {
         modelo = (DefaultTableModel)table.getModel();
         
         bd.muestraProductos(modelo);
+        System.out.println(modelo);
+        
+        
+        //jbtnNuevo.setIcon ( Imagenes.escalarImagen ( jbtnNuevo.getIcon (), 50, 30 ) );
     }
     
     @SuppressWarnings("unchecked")
@@ -53,6 +66,7 @@ public class Interfaz extends javax.swing.JFrame {
         jbtnProvedores = new javax.swing.JButton();
         jbtnVentas = new javax.swing.JButton();
         jbtnProductos = new javax.swing.JButton();
+        jbtnEmpresas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jlblTitulo = new javax.swing.JLabel();
@@ -83,10 +97,12 @@ public class Interfaz extends javax.swing.JFrame {
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(204, 204, 204));
+        setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(252, 252, 252));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jPanel2.setBackground(new java.awt.Color(25, 34, 43));
 
@@ -153,6 +169,27 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jbtnEmpresas.setBackground(new java.awt.Color(25, 34, 43));
+        jbtnEmpresas.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        jbtnEmpresas.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnEmpresas.setText("Empresas");
+        jbtnEmpresas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jbtnEmpresas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtnEmpresas.setFocusPainted(false);
+        jbtnEmpresas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnEmpresasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnEmpresasMouseExited(evt);
+            }
+        });
+        jbtnEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEmpresasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -160,17 +197,20 @@ public class Interfaz extends javax.swing.JFrame {
             .addComponent(jbtnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jbtnProvedores, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
             .addComponent(jbtnVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jbtnEmpresas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jbtnProvedores, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jbtnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jbtnEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102))
         );
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -199,10 +239,15 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("_______________________________________________________________________________________________");
 
-        jbtnNuevo.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        jbtnNuevo.setFont(new java.awt.Font("OCR A Extended", 0, 12)); // NOI18N
+        jbtnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-por-nueva-copia-30.png"))); // NOI18N
         jbtnNuevo.setText("Nuevo");
+        jbtnNuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jbtnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnNuevo.setFocusPainted(false);
+        jbtnNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnNuevo.setName("Nuevo"); // NOI18N
+        jbtnNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jbtnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbtnNuevoMouseEntered(evt);
@@ -217,10 +262,14 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        jbtnModificar.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        jbtnModificar.setFont(new java.awt.Font("OCR A Extended", 0, 12)); // NOI18N
+        jbtnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-editar-archivo-30.png"))); // NOI18N
         jbtnModificar.setText("Modificar");
+        jbtnModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jbtnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnModificar.setFocusPainted(false);
+        jbtnModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnModificar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jbtnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbtnModificarMouseEntered(evt);
@@ -235,10 +284,14 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        jbtnEliminar.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        jbtnEliminar.setFont(new java.awt.Font("OCR A Extended", 0, 12)); // NOI18N
+        jbtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-eliminar-30.png"))); // NOI18N
         jbtnEliminar.setText("Eliminar");
+        jbtnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jbtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnEliminar.setFocusPainted(false);
+        jbtnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jbtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbtnEliminarMouseEntered(evt);
@@ -253,10 +306,14 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        jbtnExptrExcl.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
-        jbtnExptrExcl.setText("Exportar Excel");
+        jbtnExptrExcl.setFont(new java.awt.Font("OCR A Extended", 0, 12)); // NOI18N
+        jbtnExptrExcl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-export-excel-30.png"))); // NOI18N
+        jbtnExptrExcl.setText("Exportar");
+        jbtnExptrExcl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jbtnExptrExcl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnExptrExcl.setFocusPainted(false);
+        jbtnExptrExcl.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnExptrExcl.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jbtnExptrExcl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbtnExptrExclMouseEntered(evt);
@@ -276,48 +333,49 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addGap(1040, 1040, 1040)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jlblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(297, 297, 297)
-                                .addComponent(jLabel2))
+                                .addGap(55, 55, 55)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(55, 55, 55)
+                                        .addComponent(jbtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(55, 55, 55)
+                                        .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(55, 55, 55)
+                                        .addComponent(jbtnExptrExcl, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(75, 75, 75)
-                                .addComponent(jbtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(78, 78, 78)
-                                .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)
-                                .addComponent(jbtnExptrExcl))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(12, 12, 12)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jlblTitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnExptrExcl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbtnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                    .addComponent(jbtnExptrExcl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jlblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jbtnNuevo.getAccessibleContext().setAccessibleDescription("Nuevo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -348,11 +406,17 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnExptrExclActionPerformed
 
     private void jbtnExptrExclMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseExited
-
+        jbtnExptrExcl.setBackground(colorWithe);
+        jbtnExptrExcl.setForeground(colorBlack);
+        ImageIcon icono = new ImageIcon(getClass().getResource("../icons8-export-excel-30.png"));
+        jbtnExptrExcl.setIcon(icono);
     }//GEN-LAST:event_jbtnExptrExclMouseExited
 
     private void jbtnExptrExclMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnExptrExclMouseEntered
-
+        jbtnExptrExcl.setBackground(buttonExport);
+        jbtnExptrExcl.setForeground(colorWithe);
+        ImageIcon icono = new ImageIcon(getClass().getResource("../icons8-export-excel-30-white.png"));
+        jbtnExptrExcl.setIcon(icono);
     }//GEN-LAST:event_jbtnExptrExclMouseEntered
 
     private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
@@ -372,6 +436,11 @@ public class Interfaz extends javax.swing.JFrame {
                 case 3:
                     
                     break;
+                    
+                case 4:
+                    String nombre = table.getValueAt(indice, 1).toString();
+                    bd.eliminaEmpresa(nombre);
+                    break;
                 default:
                     throw new AssertionError();
             }
@@ -381,17 +450,22 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnEliminarActionPerformed
 
     private void jbtnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseExited
-
+        jbtnEliminar.setBackground(colorWithe);
+        jbtnEliminar.setForeground(colorBlack);
+        ImageIcon icono = new ImageIcon(getClass().getResource("../icons8-eliminar-30.png"));
+        jbtnEliminar.setIcon(icono);
     }//GEN-LAST:event_jbtnEliminarMouseExited
 
     private void jbtnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseEntered
-
+        jbtnEliminar.setBackground(buttonEliminar);
+        jbtnEliminar.setForeground(colorWithe);
+        ImageIcon icono = new ImageIcon(getClass().getResource("../icons8-eliminar-30-white.png"));
+        jbtnEliminar.setIcon(icono);
     }//GEN-LAST:event_jbtnEliminarMouseEntered
 
     private void jbtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModificarActionPerformed
-        int indice = table.getSelectedRow();
-        
-        //try{
+        try{
+            int indice = table.getSelectedRow();
             switch (opc) {
                 case 1:
                     formProducto prod = new formProducto(this, rootPaneCheckingEnabled);
@@ -434,43 +508,70 @@ public class Interfaz extends javax.swing.JFrame {
                     
                     nv.setVisible(true);
                     break;
+                    
+                case 4:
+                    formEmpresa fe = new formEmpresa(this, rootPaneCheckingEnabled);
+                    fe.setTitle("Modificar Empresa");
+
+                    String nombreE   = table.getValueAt(indice, 1).toString();
+                    String giro      = table.getValueAt(indice, 2).toString();
+                    String email     = table.getValueAt(indice, 3).toString();
+                    String telefono  = table.getValueAt(indice, 4).toString();
+                    String domicilio = table.getValueAt(indice, 5).toString();
+
+                    fe.setInfo(nombreE, giro, email, telefono, domicilio);
+
+                    fe.setVisible(true);
+                    break;
                 default:
                     throw new AssertionError();
             }
-        /*}catch(Exception ex){
+        }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun elemento de la tabla", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }//GEN-LAST:event_jbtnModificarActionPerformed
 
     private void jbtnModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseExited
-
+        jbtnModificar.setBackground(colorWithe);
     }//GEN-LAST:event_jbtnModificarMouseExited
 
     private void jbtnModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnModificarMouseEntered
-
+        jbtnModificar.setBackground(buttonsColorEnteredTop);
     }//GEN-LAST:event_jbtnModificarMouseEntered
 
     private void jbtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoActionPerformed
         switch (opc) {
             case 1:
                 if (bd.hayProvedores()) {
-                    formProducto np = new formProducto(this, rootPaneCheckingEnabled);
-                    np.setVisible(true);
+                    formProducto fp = new formProducto(this, rootPaneCheckingEnabled);
+                    fp.setTitle("Nuevo Producto");
+                    fp.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "No hay provedores");
                 }
                 break;
             case 2:
                 if (bd.hayEmpresas()) {
-                    formProvedor prov = new formProvedor(this, rootPaneCheckingEnabled);
-                    prov.setVisible(true);
+                    formProvedor fp = new formProvedor(this, rootPaneCheckingEnabled);
+                    fp.setTitle("Nuevo Provedor");
+                    fp.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "No hay provedores");
+                    JOptionPane.showMessageDialog(rootPane, "No hay empresas");
                 }
                 break;
             case 3:
-                formVenta nv = new formVenta(this, rootPaneCheckingEnabled);
-                nv.setVisible(true);
+                if (bd.hayProductos()) {
+                    formVenta nv = new formVenta(this, rootPaneCheckingEnabled);
+                    nv.setTitle("Nueva Venta");
+                    nv.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "No hay productos");
+                }
+                break;
+            case 4:
+                formEmpresa fe = new formEmpresa(this, rootPaneCheckingEnabled);
+                fe.setTitle("Nueva Empresa");
+                fe.setVisible(true);
                 break;
             default:
                 throw new AssertionError();
@@ -478,16 +579,17 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnNuevoActionPerformed
 
     private void jbtnNuevoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseExited
-
+        jbtnNuevo.setBackground(colorWithe);
     }//GEN-LAST:event_jbtnNuevoMouseExited
 
     private void jbtnNuevoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNuevoMouseEntered
-
+        jbtnNuevo.setBackground(buttonsColorEnteredTop);
     }//GEN-LAST:event_jbtnNuevoMouseEntered
 
     private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
         opc = 1;
-        bd.muestraProductos(modelo);
+        //bd.muestraProductos(modelo);
+        actualizaTablas();
         jlblTitulo.setText("Productos");
     }//GEN-LAST:event_jbtnProductosActionPerformed
 
@@ -527,6 +629,24 @@ public class Interfaz extends javax.swing.JFrame {
         this.jbtnProvedores.setBackground(buttonsColorEntered);
     }//GEN-LAST:event_jbtnProvedoresMouseEntered
 
+    private void jbtnEmpresasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEmpresasMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnEmpresasMouseEntered
+
+    private void jbtnEmpresasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEmpresasMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnEmpresasMouseExited
+
+    private void jbtnEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEmpresasActionPerformed
+        opc = 4;
+        jlblTitulo.setText("Empresas");
+        bd.muestraEmpresas(modelo);
+    }//GEN-LAST:event_jbtnEmpresasActionPerformed
+
+    public void actualizaTablas() {
+        bd.muestraProductos(modelo);
+    }
+    
     public static void main(String args[]){
         try {
             Color texto = new Color(255,255,255);
@@ -557,8 +677,14 @@ public class Interfaz extends javax.swing.JFrame {
             
             
             UIManager.put("Button.background", Color.WHITE);
+            UIManager.put("Button.focus", new ColorUIResource(new Color(0, 0, 0, 0)));
             //UIManager.put("Button.focus", Color.WHITE);
             //UIManager.put("Button.select", Color.LIGHT_GRAY);
+            
+            UIManager.put("Menu.shortcutKeys", null);
+UIManager.put("MenuItem.acceleratorSelectionForeground", null);
+UIManager.put("MenuItem.selectionBackground", UIManager.getColor("MenuBar.background"));
+
             
             
             
@@ -591,6 +717,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnEliminar;
+    private javax.swing.JButton jbtnEmpresas;
     private javax.swing.JButton jbtnExptrExcl;
     private javax.swing.JButton jbtnModificar;
     private javax.swing.JButton jbtnNuevo;

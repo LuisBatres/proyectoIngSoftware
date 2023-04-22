@@ -11,6 +11,7 @@ import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicMenuUI;
 import mx.tecnm.util.Imagenes;
 
+
 /**
  *
  * @author franc
@@ -18,7 +19,7 @@ import mx.tecnm.util.Imagenes;
 public class JMenuBarPers extends JFrame implements ActionListener {
     private JMenuBar mb;
     private JMenu menuFile,menuAbout,menuCerrar,menuMinimizar;
-    private JMenuItem fileSalir,fileCerrarSesion,aboutVersion, fileEmpresas;
+    private JMenuItem fileSalir,fileCerrarSesion,aboutVersion;
     private JFrame frame;
     
     public JMenuBarPers(JFrame frame) {
@@ -37,8 +38,6 @@ public class JMenuBarPers extends JFrame implements ActionListener {
         menuFile.add(fileSalir);
         fileCerrarSesion = new JMenuItem("Cerrar sesion");
         menuFile.add(fileCerrarSesion);
-        fileEmpresas = new JMenuItem("Empresas");
-        menuFile.add(fileEmpresas);
         
         menuAbout = new JMenu("Acerca de");
         mb.add(menuAbout);
@@ -47,27 +46,28 @@ public class JMenuBarPers extends JFrame implements ActionListener {
         
         mb.add(Box.createHorizontalGlue());
         
-        menuMinimizar = new JMenu();
+        menuMinimizar = new JMenu("-");
         mb.add(menuMinimizar);
         
-        menuCerrar = new JMenu();
+        menuCerrar = new JMenu("X");
+        menuCerrar.setMargin(new Insets(0, (mb.getSize().width - menuCerrar.getPreferredSize().width) / 2, 0, 0));
         mb.add(menuCerrar);
+        //menuCerrar.setAlignmentX(CENTER_ALIGNMENT);
+        //menuCerrar.setVerticalTextPosition((int) CENTER_ALIGNMENT);
+        //menuCerrar.setHorizontalTextPosition(SwingConstants.CENTER);
         
+
         //ImageIcon iconoCerrar = new ImageIcon("C:\\Users\\franc\\OneDrive\\Documentos\\GitHub\\proyectoIngSoftware\\appInventario\\src\\cerrar.png");
         ///menuCerrar.setIcon(iconoCerrar);
         //menuCerrar.setIcon(Imagenes.escalarImagen(menuCerrar.getIcon(), 30, 30));
         //menuCerrar.setPreferredSize(new Dimension(50,30));
         
-        ImageIcon iconoMinimizar = new ImageIcon("C:\\Users\\franc\\OneDrive\\Documentos\\GitHub\\proyectoIngSoftware\\appInventario\\src\\error.png");
-        menuMinimizar.setIcon(iconoMinimizar);
-        menuMinimizar.setIcon(Imagenes.escalarImagen(menuMinimizar.getIcon(), 20, 20));
         
         menuCerrar.setBackground(Color.red);
         
         fileSalir.addActionListener(this);
         fileCerrarSesion.addActionListener(this);
         aboutVersion.addActionListener(this);
-        fileEmpresas.addActionListener(this);
         
         menuCerrar.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
@@ -85,16 +85,23 @@ public class JMenuBarPers extends JFrame implements ActionListener {
         aboutVersion.setPreferredSize(new Dimension(100,25)); // ******
         fileCerrarSesion.setPreferredSize(new Dimension(100,25)); // ******
         fileSalir.setPreferredSize(new Dimension(100,25)); // ******
-        fileEmpresas.setPreferredSize(new Dimension(100,25)); // ******
         
         fileSalir.setBorderPainted(false);
         fileCerrarSesion.setBorderPainted(false);
-        fileEmpresas.setBorderPainted(false);
         
-        menuCerrar.setPreferredSize(new Dimension(30, 25));
-        menuCerrar.setUI(new CustomMenuUI()); // Establecemos un MenuUI personalizado
-        Insets insets = new Insets(0,0,0,0);
-        menuCerrar.setMargin(insets);
+        menuCerrar.setPreferredSize(new Dimension(40, 30));
+        //menuCerrar.setUI(new CustomMenuUI()); // Establecemos un MenuUI personalizado
+        //Insets insets = new Insets(0,0,0,0);
+        //menuCerrar.setMargin(insets);
+        
+        menuCerrar.setPreferredSize(new Dimension(40, 30));
+        
+        menuCerrar.setHorizontalTextPosition((int) CENTER_ALIGNMENT);
+        menuCerrar.setHorizontalTextPosition(SwingConstants.CENTER);
+        
+        //menuCerrar.setUI(new CustomMenuUI()); // Establecemos un MenuUI personalizado
+        menuCerrar.setFont(new Font("Arial",Font.PLAIN, 12));
+        menuCerrar.setHorizontalTextPosition(SwingConstants.CENTER);
         
     }
 
@@ -106,10 +113,6 @@ public class JMenuBarPers extends JFrame implements ActionListener {
             frame.dispose();
             InicioSesion is = new InicioSesion(this, rootPaneCheckingEnabled);
             is.setVisible(true);
-        }
-        if (e.getSource()==fileEmpresas) {
-            interfazEmpresa ie = new interfazEmpresa(this, rootPaneCheckingEnabled);
-            ie.setVisible(true);
         }
         if (e.getSource()==aboutVersion) {
             JOptionPane.showMessageDialog(null,
@@ -133,18 +136,19 @@ public class JMenuBarPers extends JFrame implements ActionListener {
     }
     
     
-class CustomMenuUI extends BasicMenuUI {
-        private final ImageIcon backgroundImage = new ImageIcon("C:\\Users\\franc\\OneDrive\\Documentos\\GitHub\\proyectoIngSoftware\\appInventario\\src\\cerrar.png");
+    public class CenteredMenu extends JMenu {
+        public CenteredMenu(String text) {
+            super(text);
+        }
 
         @Override
-        public void paint(Graphics g, JComponent c) {
-            // Dibujamos la imagen de fondo en el menú
-            if (backgroundImage != null) {
-                g.drawImage(backgroundImage.getImage(), 0, 0, c.getWidth(), c.getHeight(), null);
-            }
-
-            // Dibujamos el texto y los elementos del menú
-            super.paint(g, c);
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g;
+            FontMetrics fm = g2.getFontMetrics();
+            Rectangle r = getBounds();
+            int x = (r.width - fm.stringWidth(getText())) / 2;
+            int y = (r.height - fm.getHeight()) / 2 + fm.getAscent();
+            g2.drawString(getText(), x, y);
         }
     }
 }
