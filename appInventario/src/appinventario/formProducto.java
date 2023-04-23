@@ -81,21 +81,21 @@ public class formProducto extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtxtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -174,33 +174,32 @@ public class formProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Producto producto = new Producto();
         BD bd = new BD();
-        Producto obj = new Producto();
+        Interfaz in = new Interfaz();
+        
         int index = this.jcbProvedores.getSelectedIndex();
+        int idProv = bd.getIdProvedor(this.jcbProvedores.getItemAt(index));
         
-        obj.setCodigo(Integer.parseInt(jtxtCodigo.getText()));
-        obj.setNombre(jtxtNombre.getText());
-        obj.setMarca(jtxtMarca.getText());
-        obj.setPrecioCompra(Float.parseFloat(jtxtPrecioCompra.getText()));
-        obj.setPrecioVenta(Float.parseFloat(jtxtPrecioVenta.getText()));
-        obj.setExistencias(Integer.parseInt(jtxtCantidad.getText()));
-        
-        String nombre = jcbProvedores.getItemAt(index);
-        int id = bd.getIdProvedor(nombre);
-        obj.setIdProvedor(id);
+        producto.setCodigo(Integer.parseInt(jtxtCodigo.getText()));
+        producto.setNombre(jtxtNombre.getText());
+        producto.setMarca(jtxtMarca.getText());
+        producto.setPrecioCompra(Float.parseFloat(jtxtPrecioCompra.getText()));
+        producto.setPrecioVenta(Float.parseFloat(jtxtPrecioVenta.getText()));
+        producto.setExistencias(Integer.parseInt(jtxtCantidad.getText()));
+        producto.setIdProvedor(idProv);
         
         if (this.getTitle().equals("Modificar Producto")) {
-            bd.actualizaProducto(obj);
+            bd.actualizaProducto(producto);
             JOptionPane.showMessageDialog(null, "Se guardo correctamente","ACTUALIZADO",JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
         }
         else { 
-            bd.insertaProducto(obj);
-            JOptionPane.showMessageDialog(null, "Se guardo correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+            bd.insertaProducto(producto);
+            JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
         }
-         
         
+        in.actualizaTablaProductos();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
@@ -252,6 +251,16 @@ public class formProducto extends javax.swing.JDialog {
     
     public void blockPK(){
         jtxtCodigo.setEditable(false);
+    }
+    
+    public void limpiarP(){
+        jtxtCodigo.setText("");
+        jtxtNombre.setText("");
+        jtxtMarca.setText("");
+        jtxtPrecioCompra.setText("");
+        jtxtPrecioVenta.setText("");
+        jtxtCantidad.setText("");
+        jcbProvedores.setSelectedItem("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

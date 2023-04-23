@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class BD {
@@ -74,6 +75,7 @@ public class BD {
            
         } catch (SQLException ex) {
             Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+
         } finally {
             try {
                 ps.close();
@@ -439,11 +441,12 @@ public class BD {
         float precioCompra = obj.getPrecioCompra();
         float  precioVenta = obj.getPrecioVenta();
         int    existencias = obj.getExistencias();
+        int idProv         = obj.getIdProvedor();
         
         try {
             String query = "UPDATE Productos SET nombre = '"+nombre+"', marca = '"+marca+"',"
                 + "precioCompra = " + precioCompra + ", precioVenta = " + precioVenta + ", "
-                + "existencias = " + existencias + " WHERE codigo = " + codigo + ";";
+                + "existencias = " + existencias + ", idProvedor = " +idProv+ " WHERE codigo = " + codigo + ";";
 
             conexion = con.getConexion();
             st = conexion.createStatement();
@@ -472,7 +475,7 @@ public class BD {
         try {
             String query = "UPDATE empresas SET giro = '"+giro+"', email = '"+email+"',"
                 + "telefono = '" + telefono + "', domicilio = '" + domicilio
-                + " WHERE nombre = '" + nombre + "';";
+                + "' WHERE nombre = '" + nombre + "';";
 
             conexion = con.getConexion();
             st = conexion.createStatement();
@@ -495,10 +498,12 @@ public class BD {
         String nombre   = obj.getNombre();
         String telefono = obj.getTelefono();
         String email    = obj.getEmail();
+        String fechaCon = obj.getFechaContrato();
+        int empresa  = obj.getIdEmpresa();
         
         try {
             String query = "UPDATE provedores SET telefono = '"+telefono+"',"
-                + "email = '" + email + "' WHERE nombre = '" + nombre + "';";
+                + "email = '" + email + "'," + "fechaContrato = '" +fechaCon+"', idEmpresa = "+empresa+" WHERE nombre = '" + nombre + "';";
 
             conexion = con.getConexion();
             st = conexion.createStatement();
@@ -678,6 +683,106 @@ public class BD {
     public boolean hayProductos() {
         try {
             String query = "SELECT * FROM productos;";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            if (rs.next()) {
+                return true;
+            } 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
+    public boolean existeNombreEnEmpresas(String nombre) {
+        try {
+            String query = "SELECT * FROM empresas WHERE nombre= '"+nombre+"';";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            if (rs.next()) {
+                return true;
+            } 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
+    public boolean existeEmailEnEmpresas(String email) {
+        try {
+            String query = "SELECT * FROM empresas WHERE email = '"+email+"';";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            if (rs.next()) {
+                return true;
+            } 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
+    public boolean existeTelEnEmpresas(String tel) {
+        try {
+            String query = "SELECT * FROM empresas WHERE telefono = '"+tel+"';";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            if (rs.next()) {
+                return true;
+            } 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
+    public boolean existeTelEnProvedores(String tel) {
+        try {
+            String query = "SELECT * FROM provedores WHERE telefono = '"+tel+"';";
 
             conexion = con.getConexion();
             st = conexion.createStatement();

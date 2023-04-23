@@ -31,7 +31,7 @@ public class formEmpresa extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Nuevo Producto");
+        setTitle("Nueva Empresa");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -90,12 +90,11 @@ public class formEmpresa extends javax.swing.JDialog {
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jtxtTelefonoEmpresa)
-                        .addComponent(jtxtEmailEmpresa)
-                        .addComponent(jtxtGiroEmpresa)
-                        .addComponent(jtxtNombreEmpresa)
-                        .addComponent(jtxtDomicilioEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jtxtTelefonoEmpresa, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtxtEmailEmpresa, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtxtGiroEmpresa, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtxtNombreEmpresa, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtxtDomicilioEmpresa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -156,6 +155,7 @@ public class formEmpresa extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Empresa empresa = new Empresa();
         BD bd = new BD();
+        Interfaz inter = new Interfaz();
 
         empresa.setNombre(jtxtNombreEmpresa.getText());
         empresa.setGiro(jtxtGiroEmpresa.getText());
@@ -164,13 +164,26 @@ public class formEmpresa extends javax.swing.JDialog {
         empresa.setDomicilio(jtxtDomicilioEmpresa.getText());
         
         String opcion = this.getTitle();
-        if (opcion.equals("Nuevo Producto")) {
-            bd.insertaEmpresa(empresa);
-        } else {
+        if (opcion.equals("Nueva Empresa")) {
+            if (bd.existeNombreEnEmpresas(jtxtNombreEmpresa.getText())) {
+                JOptionPane.showMessageDialog(null, "Una empresa con el mismo NOMBRE ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else if (bd.existeEmailEnEmpresas(jtxtEmailEmpresa.getText())){
+                JOptionPane.showMessageDialog(null, "Una empresa con el mismo EMAIL ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else if (bd.existeTelEnEmpresas(jtxtTelefonoEmpresa.getText())){
+                JOptionPane.showMessageDialog(null, "Una empresa con el mismo TELEFONO ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else{
+                bd.insertaEmpresa(empresa);
+                JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } 
+        }else{
             bd.actualizaEmpresa(empresa);
+            JOptionPane.showMessageDialog(null, "Se guardo correctamente","ACTUALIZADO",JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         }
         
-        JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+        inter.actualizaTablaEmpresa();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -189,6 +202,14 @@ public class formEmpresa extends javax.swing.JDialog {
         jtxtDomicilioEmpresa.setText(domicilio);
         
         jtxtNombreEmpresa.setEditable(false);
+    }
+    
+    public void limpiarE(){
+        jtxtNombreEmpresa.setText("");
+        jtxtGiroEmpresa.setText("");
+        jtxtEmailEmpresa.setText("");
+        jtxtTelefonoEmpresa.setText("");
+        jtxtDomicilioEmpresa.setText("");
     }
     
     public static void main(String args[]) {

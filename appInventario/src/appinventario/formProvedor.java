@@ -19,6 +19,8 @@ public class formProvedor extends javax.swing.JDialog {
         jtxtEmailProv.setText(emailP);
         jtxtFechaCProv.setText(fechaP);
         jcbEmpresa.setSelectedItem(nomE);
+        
+        jtxtNombreProv.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -161,6 +163,7 @@ public class formProvedor extends javax.swing.JDialog {
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         Provedor provedor = new Provedor();
         BD bd = new BD();
+        Interfaz in = new Interfaz();
         
         int index = this.jcbEmpresa.getSelectedIndex();
         int idEmpresa = bd.getIdEmpresa(this.jcbEmpresa.getItemAt(index));
@@ -170,12 +173,22 @@ public class formProvedor extends javax.swing.JDialog {
         provedor.setEmail(jtxtEmailProv.getText());
         provedor.setFechaContrato(jtxtFechaCProv.getText());
         provedor.setIdEmpresa(idEmpresa);
-
-        bd.insertaProvedor(provedor);
-       
-        JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-        Interfaz inter = new Interfaz();
-        bd.muestraProvedores(inter.modelo);
+        
+        if(this.getTitle().equals("Nuevo Provedor")){
+            if(bd.existeTelEnProvedores(jtxtTelefonoProv.getText())){
+                JOptionPane.showMessageDialog(null, "Un provedor con el mismo TELEFONO ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else{
+                bd.insertaProvedor(provedor);
+                JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            }
+        }else{
+            bd.actualizaProvedor(provedor);
+            JOptionPane.showMessageDialog(null, "Se guardo correctamente","ACTUALIZADO",JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+        
+        in.actualizaTablaProvedores();
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     public static void main(String args[]) {

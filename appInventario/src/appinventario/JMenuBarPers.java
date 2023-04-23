@@ -71,7 +71,8 @@ public class JMenuBarPers extends JFrame implements ActionListener {
         
         menuCerrar.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
-                        frame.dispose();
+                        //frame.dispose();
+                        System.exit(0);
                     }
                 });
         

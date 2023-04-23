@@ -43,8 +43,6 @@ public class Interfaz extends javax.swing.JFrame {
         modelo = (DefaultTableModel)table.getModel();
         
         bd.muestraProductos(modelo);
-        System.out.println(modelo);
-        
         
         //jbtnNuevo.setIcon ( Imagenes.escalarImagen ( jbtnNuevo.getIcon (), 50, 30 ) );
     }
@@ -427,10 +425,14 @@ public class Interfaz extends javax.swing.JFrame {
                 case 1:
                     int codigo = Integer.parseInt(table.getValueAt(indice, 1).toString());
                     bd.eliminaProducto(codigo);
+                    JOptionPane.showMessageDialog(null, "Se elimino correctamente", "ELIMINADO", JOptionPane.OK_OPTION);
                     bd.muestraProductos(modelo);
                     break;         
                 case 2:
-                    
+                    String tel = table.getValueAt(indice, 2).toString();
+                    bd.eliminaProvedor(tel);
+                    JOptionPane.showMessageDialog(null, "Se elimino correctamente", "ELIMINADO", JOptionPane.OK_OPTION);
+                    bd.muestraProvedores(modelo);
                     break;
                     
                 case 3:
@@ -440,6 +442,8 @@ public class Interfaz extends javax.swing.JFrame {
                 case 4:
                     String nombre = table.getValueAt(indice, 1).toString();
                     bd.eliminaEmpresa(nombre);
+                    JOptionPane.showMessageDialog(null, "Se elimino correctamente", "ELIMINADO", JOptionPane.OK_OPTION);
+                    bd.muestraEmpresas(modelo);
                     break;
                 default:
                     throw new AssertionError();
@@ -514,12 +518,12 @@ public class Interfaz extends javax.swing.JFrame {
                     fe.setTitle("Modificar Empresa");
 
                     String nombreE   = table.getValueAt(indice, 1).toString();
-                    String giro      = table.getValueAt(indice, 2).toString();
-                    String email     = table.getValueAt(indice, 3).toString();
-                    String telefono  = table.getValueAt(indice, 4).toString();
-                    String domicilio = table.getValueAt(indice, 5).toString();
+                    String giroE      = table.getValueAt(indice, 2).toString();
+                    String emailE     = table.getValueAt(indice, 3).toString();
+                    String telefonoE  = table.getValueAt(indice, 4).toString();
+                    String domicilioE = table.getValueAt(indice, 5).toString();
 
-                    fe.setInfo(nombreE, giro, email, telefono, domicilio);
+                    fe.setInfo(nombreE, giroE, emailE, telefonoE, domicilioE);
 
                     fe.setVisible(true);
                     break;
@@ -588,8 +592,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
         opc = 1;
-        //bd.muestraProductos(modelo);
-        actualizaTablas();
+        bd.muestraProductos(modelo);
         jlblTitulo.setText("Productos");
     }//GEN-LAST:event_jbtnProductosActionPerformed
 
@@ -643,8 +646,24 @@ public class Interfaz extends javax.swing.JFrame {
         bd.muestraEmpresas(modelo);
     }//GEN-LAST:event_jbtnEmpresasActionPerformed
 
-    public void actualizaTablas() {
-        bd.muestraProductos(modelo);
+    public void actualizaTablaEmpresa() {
+        jbtnEmpresas.doClick();
+        System.out.println("entra");
+    }
+    
+    public void actualizaTablaProductos() {
+        jbtnProductos.doClick();
+        System.out.println("entra");
+    }
+    
+    public void actualizaTablaProvedores() {
+        jbtnProvedores.doClick();
+        System.out.println("entra");
+    }
+    
+    public void actualizaTablaVentas() {
+        jbtnVentas.doClick();
+        System.out.println("entra");
     }
     
     public static void main(String args[]){
