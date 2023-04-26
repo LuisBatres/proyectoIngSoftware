@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -142,13 +143,13 @@ public class BD {
     
     public void insertaProductoVenta(ProductoVenta obj) {
         try {
-            String query = "INSERT INTO ventas(codigo, prodCantidad, prodTotal, idVenta, idProd) "
+            String query = "INSERT INTO productos_ventas(codigo, prodCantidad, prodTotal, idVenta, idProd) "
                      + "VALUES(?,?,?,?,?);";
             
             conexion = con.getConexion();
             ps = conexion.prepareStatement(query);
             
-            ps.setString ( 1, obj.getCodigo()   );
+            ps.setInt    ( 1, obj.getCodigo()       );
             ps.setInt    ( 2, obj.getProdCantidad() );
             ps.setFloat  ( 3, obj.getProdTotal()     );
             ps.setInt    ( 4, obj.getIdVenta()      );
@@ -319,7 +320,7 @@ public class BD {
         modelo.addColumn      ("Subtotal" );
         modelo.addColumn      ("Total"    );
         try {
-            String query = "SELECT * FROM ventas AS v, productos_ventas AS pv" +
+            String query = "SELECT DISTINCT v.idVenta, v.fecha, v.subtotal, v.total, pv.codigo FROM ventas AS v, productos_ventas AS pv" +
                            " WHERE v.idVenta = pv.idVenta";
 
             conexion = con.getConexion();
@@ -407,7 +408,7 @@ public class BD {
         }
     }
     
-    public void eliminaVenta(String codigo) {
+    public void eliminaVenta(int codigo) {
         try {
             String queryCodigo = "SELECT idVenta FROM productos_ventas WHERE codigo = " + codigo;
              
@@ -418,7 +419,7 @@ public class BD {
             rs.next();
             int idVenta = rs.getInt(1);
             
-            String query = "DELETE FROM venta WHERE idVenta = '" + idVenta + "';";
+            String query = "DELETE FROM ventas WHERE idVenta = " + idVenta + ";";
             st.executeUpdate(query);
             
         } catch (SQLException e) {
@@ -441,12 +442,11 @@ public class BD {
         float precioCompra = obj.getPrecioCompra();
         float  precioVenta = obj.getPrecioVenta();
         int    existencias = obj.getExistencias();
-        int idProv         = obj.getIdProvedor();
         
         try {
-            String query = "UPDATE Productos SET nombre = '"+nombre+"', marca = '"+marca+"',"
+            String query = "UPDATE productos SET nombre = '"+nombre+"', marca = '"+marca+"',"
                 + "precioCompra = " + precioCompra + ", precioVenta = " + precioVenta + ", "
-                + "existencias = " + existencias + ", idProvedor = " +idProv+ " WHERE codigo = " + codigo + ";";
+                + "existencias = " + existencias + " WHERE codigo = " + codigo + ";";
 
             conexion = con.getConexion();
             st = conexion.createStatement();
@@ -499,11 +499,10 @@ public class BD {
         String telefono = obj.getTelefono();
         String email    = obj.getEmail();
         String fechaCon = obj.getFechaContrato();
-        int empresa  = obj.getIdEmpresa();
         
         try {
             String query = "UPDATE provedores SET telefono = '"+telefono+"',"
-                + "email = '" + email + "'," + "fechaContrato = '" +fechaCon+"', idEmpresa = "+empresa+" WHERE nombre = '" + nombre + "';";
+                         + "email = '" + email + "'," + "fechaContrato = '" +fechaCon+"' WHERE nombre = '" + nombre + "';";
 
             conexion = con.getConexion();
             st = conexion.createStatement();
@@ -803,5 +802,245 @@ public class BD {
             }
         }
         return false;
+    }
+    
+    public int maxVentas() {
+        int contador = 0;
+        try {
+            String query = "SELECT idVenta FROM ventas";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            while (rs.next()){
+                contador++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return contador;
+    }
+    
+    public void muestraProductosTab(DefaultTableModel modelo) {
+        try {
+            modelo.setNumRows(0);
+            String query = "SELECT nombre FROM productos ORDER BY nombre";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                String nombre = rs.getString ( 1 );
+                
+                Object[] nuevoRenglon = {nombre, null};
+                modelo.addRow(nuevoRenglon);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public float precioVentaProds(String prod) {
+        float precio = 0;
+        try {
+            String query = "SELECT precioVenta FROM productos WHERE nombre = '" + prod + "';";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+
+            rs.next();
+            precio = rs.getFloat(1);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return precio;
+    }
+    
+    public boolean existeCodigoProducto(int codigo) {
+        try {
+            String query = "SELECT * FROM productos WHERE codigo = "+codigo+";";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            if (rs.next()) {
+                return true;
+            } 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
+    public boolean existeNombreProducto( String nombre ) {
+        try {
+            String query = "SELECT * FROM productos WHERE nombre = '"+nombre+"';";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            if (rs.next()) {
+                return true;
+            } 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
+    public boolean existeEmailEnProvedores( String email ) {
+        try {
+            String query = "SELECT email FROM provedores WHERE email = '"+email+"';";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            if (rs.next()) {
+                return true;
+            } 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    
+    public int getIdVenta( String fecha ) {
+        int id = 0; 
+        try {
+            String query = "SELECT idVenta FROM ventas WHERE fecha = '"+fecha+"';";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            rs.next();
+            id = rs.getInt(1);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return id;
+    }
+    
+    public int getIdProducto( String producto ) {
+        int id = 0; 
+        try {
+            String query = "SELECT idProd FROM productos WHERE nombre = '"+producto+"';";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            
+            rs.next();
+            id = rs.getInt(1);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return id;
+    }
+    
+    public void muestraInfoVentas(DefaultListModel mp, DefaultListModel mc, DefaultListModel mt, int codigo) {
+        mp.removeAllElements();
+        mc.removeAllElements();
+        mt.removeAllElements();
+        
+        try {
+            String query = "SELECT p.nombre, pv.prodCantidad, pv.prodTotal " +
+                           "FROM ventas AS v, productos_ventas AS pv, productos AS p " +
+                           "WHERE (v.idVenta = pv.idVenta) AND (pv.idProd = p.idProd) AND pv.codigo = " + codigo + ";";
+
+            conexion = con.getConexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                mp.addElement(rs.getString(1));
+                mc.addElement(rs.getInt(2));
+                mt.addElement(rs.getFloat(3));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

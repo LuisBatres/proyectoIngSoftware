@@ -2,7 +2,7 @@ package appinventario;
 
 public class ProductoVenta {
     // Atributos
-    private String codigo;
+    private int    codigo;
     private int    prodCantidad;
     private float  prodTotal;
     private int    idVenta;
@@ -10,14 +10,14 @@ public class ProductoVenta {
     
     // Constructores
     public ProductoVenta () {
-        codigo       = "";
+        codigo       = 0;
         prodCantidad = 0;
         prodTotal    = 0;
         idVenta      = 0;
         idProd       = 0;
     }
     
-    public ProductoVenta ( String codigo, int prodCantidad, float prodTotal, int idVenta, int idProd ) {
+    public ProductoVenta ( int codigo, int prodCantidad, float prodTotal, int idVenta, int idProd ) {
         this.codigo       = codigo;
         this.prodCantidad = prodCantidad;
         this.prodTotal    = prodTotal;
@@ -25,11 +25,11 @@ public class ProductoVenta {
         this.idProd       = idProd;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
