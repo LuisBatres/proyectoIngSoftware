@@ -1306,27 +1306,30 @@ public class Interfaz extends javax.swing.JFrame {
         empresa.setEmail     ( emailEmpresa                  );
         empresa.setTelefono  ( telEmpresa                  );
         empresa.setDomicilio ( jtxtDomicilioEmp.getText() );
-
-        if (formEmpresa.getTitle().equals("Modificar Empresa")) {
+        
+        if(validarCamposEmpresa()){
+            if (formEmpresa.getTitle().equals("Modificar Empresa")) {
             bd.actualizaEmpresa(empresa);
             JOptionPane.showMessageDialog(null, "Se guardo correctamente","ACTUALIZADO",JOptionPane.INFORMATION_MESSAGE);
             formEmpresa.dispose();
             bd.muestraEmpresas(modelo);
-        }
-        else {
-            if (bd.existeNombreEnEmpresas(nombreEmpresa)) {
-                JOptionPane.showMessageDialog(null, "Una empresa con el mismo NOMBRE ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }else if (bd.existeEmailEnEmpresas(emailEmpresa)){
-                JOptionPane.showMessageDialog(null, "Una empresa con el mismo EMAIL ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }else if (bd.existeTelEnEmpresas(telEmpresa)){
-                JOptionPane.showMessageDialog(null, "Una empresa con el mismo TELEFONO ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }else{
-                bd.insertaEmpresa(empresa);
-                JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-                formEmpresa.dispose();
-                bd.muestraEmpresas(modelo);
+            }
+            else {
+                if (bd.existeNombreEnEmpresas(nombreEmpresa)) {
+                    JOptionPane.showMessageDialog(null, "Una empresa con el mismo NOMBRE ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }else if (bd.existeEmailEnEmpresas(emailEmpresa)){
+                    JOptionPane.showMessageDialog(null, "Una empresa con el mismo EMAIL ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }else if (bd.existeTelEnEmpresas(telEmpresa)){
+                    JOptionPane.showMessageDialog(null, "Una empresa con el mismo TELEFONO ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    bd.insertaEmpresa(empresa);
+                    JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+                    formEmpresa.dispose();
+                    bd.muestraEmpresas(modelo);
+                }
             }
         }
+        
     }//GEN-LAST:event_jBtnGuardarEmpActionPerformed
 
     private void jBtnCancelarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarEmpActionPerformed
@@ -1353,27 +1356,34 @@ public class Interfaz extends javax.swing.JFrame {
         producto.setExistencias  ( Integer.parseInt(jtxtCantidadProd.getText())          );
         producto.setIdProvedor   ( idProv                                                   );
 
-        if (formProducto.getTitle().equals("Modificar Producto")) {
-            bd.actualizaProducto(producto);
-            JOptionPane.showMessageDialog(null, "Se guardo correctamente","ACTUALIZADO",JOptionPane.INFORMATION_MESSAGE);
-            bd.muestraProductos(modelo);
-            formProducto.dispose();
-        }
-        else {
-            if (!bd.existeCodigoProducto(codigo)) {
-                if (!bd.existeNombreProducto(nombre)) {
-                    bd.insertaProducto(producto);
-                    JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-                    formProducto.dispose();
+        try{
+            if(validarCamposProducto()){
+                if (formProducto.getTitle().equals("Modificar Producto")) {
+                    bd.actualizaProducto(producto);
+                    JOptionPane.showMessageDialog(null, "Se guardo correctamente","ACTUALIZADO",JOptionPane.INFORMATION_MESSAGE);
                     bd.muestraProductos(modelo);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Un producto con el mismo NOMBRE ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    formProducto.dispose();
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Un producto con el mismo CODIGO ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                else {
+                    if (!bd.existeCodigoProducto(codigo)) {
+                        if (!bd.existeNombreProducto(nombre)) {
+                            bd.insertaProducto(producto);
+                            JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+                            formProducto.dispose();
+                            bd.muestraProductos(modelo);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Un producto con el mismo NOMBRE ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Un producto con el mismo CODIGO ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    }
             }
-            
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros (NO PUEDE HABER CAMPOS VACIOS)", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+   
     }//GEN-LAST:event_jBtnGuardarProdActionPerformed
 
     private void jBtnCancelarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarProdActionPerformed
@@ -1397,26 +1407,29 @@ public class Interfaz extends javax.swing.JFrame {
         provedor.setEmail(email);
         provedor.setFechaContrato(jtxtFechaCProv.getText());
         provedor.setIdEmpresa(idEmpresa);
-
-        if(formProvedor.getTitle().equals("Modificar Provedor")){
-            bd.actualizaProvedor(provedor);
-            JOptionPane.showMessageDialog(null, "Se guardo correctamente","ACTUALIZADO",JOptionPane.INFORMATION_MESSAGE);
-            formProvedor.dispose();
-            bd.muestraProvedores(modelo);
-        }else{
-           if(!bd.existeTelEnProvedores(telefono)){
-               if (!bd.existeEmailEnProvedores(email)) {
-                   bd.insertaProvedor(provedor);
-                   JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-                   formProvedor.dispose();
-                   bd.muestraProvedores(modelo);
-               } else {
-                   JOptionPane.showMessageDialog(null, "Un provedor con el mismo EMAIL ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
-               }   
+        
+        if(validarCamposProvedor()){
+            if(formProvedor.getTitle().equals("Modificar Provedor")){
+                bd.actualizaProvedor(provedor);
+                JOptionPane.showMessageDialog(null, "Se guardo correctamente","ACTUALIZADO",JOptionPane.INFORMATION_MESSAGE);
+                formProvedor.dispose();
+                bd.muestraProvedores(modelo);
             }else{
-                JOptionPane.showMessageDialog(null, "Un provedor con el mismo TELEFONO ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+               if(!bd.existeTelEnProvedores(telefono)){
+                   if (!bd.existeEmailEnProvedores(email)) {
+                       bd.insertaProvedor(provedor);
+                       JOptionPane.showMessageDialog(null, "Se agrego correctamente","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+                       formProvedor.dispose();
+                       bd.muestraProvedores(modelo);
+                   } else {
+                       JOptionPane.showMessageDialog(null, "Un provedor con el mismo EMAIL ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                   }   
+                }else{
+                    JOptionPane.showMessageDialog(null, "Un provedor con el mismo TELEFONO ya existe, no se insertara.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
+ 
     }//GEN-LAST:event_jBtnGuardarProvActionPerformed
 
     private void jBtnCancelarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarProvActionPerformed
@@ -1777,4 +1790,155 @@ public class Interfaz extends javax.swing.JFrame {
         
         jtxtNombreEmp.setEditable ( true );
     }
+    
+    public boolean validarCamposEmpresa(){
+        //OBTENER LOS VALORES DE LOS CAMPOS
+        String nombreEmpresa = jtxtNombreEmp.getText();
+        String giro          = jtxtGiroEmp.getText();
+        String emailEmpresa  = jtxtEmailEmp.getText();
+        String telEmpresa    = jtxtTelefonoEmp.getText();
+        String domicilio     = jtxtDomicilioEmp.getText();
+        
+        //VALIDAR NOMBRE
+        if(nombreEmpresa.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo NOMBRE no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!nombreEmpresa.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")){
+            JOptionPane.showMessageDialog(null, "El NOMBRE debe contener solo letras", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        //VALIDAR GIRO
+        if(giro.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo GIRO no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!giro.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")){
+            JOptionPane.showMessageDialog(null, "El GIRO debe contener solo letras", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        //VALIDAR EMAIL 
+        if(emailEmpresa.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo EMAIL no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!emailEmpresa.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}||\\s*$")){
+            JOptionPane.showMessageDialog(null, "El EMAIL no es valido", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        //VALIDAR TELEFONO
+        if(telEmpresa.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo TELEFONO no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!telEmpresa.matches("\\d{10}")){
+            JOptionPane.showMessageDialog(null, "El TELEFONO debe contener solo 10 numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        //VALIDAR DOMICILIO
+        if(domicilio.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo DOMICILIO no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!domicilio.matches("^[A-Za-z0-9\\s\\#\\.\\-\\,]+$")){
+            JOptionPane.showMessageDialog(null, "El DOMICILIO no es valido", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean validarCamposProvedor(){
+        //OBTENER LOS VALORES DE LOS CAMPOS
+        String nomProv = jtxtNombreProv.getText();
+        String telProv = jtxtTelefonoProv.getText();
+        String emailProv = jtxtEmailProv.getText();
+        String fechaConP = jtxtFechaCProv.getText();
+        
+        //VALIDAR NOMBRE
+        if(nomProv.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo NOMBRE no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!nomProv.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")){
+            JOptionPane.showMessageDialog(null, "El NOMBRE debe contener solo letras", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        //VALIDAR TELEFONO
+        if(telProv.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo TELEFONO no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!telProv.matches("\\d{10}")){
+            JOptionPane.showMessageDialog(null, "El TELEFONO debe contener solo 10 numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        //VALIDAR EMAIL 
+        if(emailProv.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo EMAIL no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!emailProv.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}||\\s*$")){
+            JOptionPane.showMessageDialog(null, "El EMAIL no es valido", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        //VALIDAR FECHA
+        if(fechaConP.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo FECHA no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!fechaConP.matches("\\d{4}-\\d{2}-\\d{2}")){
+            JOptionPane.showMessageDialog(null, "La FECHA no es valida (aaaa-mm-dd)", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean validarCamposProducto(){
+        //OBTENER LOS VALORES DE LOS CAMPOS
+        int codProd = Integer.parseInt(jtxtCodigoProd.getText());
+        String codigo = Integer.toString(codProd);
+        String nombreProd = jtxtNombreProd.getText();
+        String marcaProd = jtxtMarcaProd.getText();
+        //float pC = Float.parseFloat(jtxtPrecioCompraProd.getText());
+        //float pV = Float.parseFloat(jtxtPrecioVentaProd.getText());
+        //int cantProd = Integer.parseInt(jtxtCantidadProd.getText());
+        
+        //VALIDAR CODIGO
+        if(codigo.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo CODIGO no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        //VALIDAR NOMBRE
+        if(nombreProd.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo NOMBRE no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!nombreProd.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")){
+            JOptionPane.showMessageDialog(null, "El NOMBRE debe contener solo letras", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        //VALIDAR MARCA
+        if(marcaProd.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo MARCA no puede estar vacio", "REVISAR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!marcaProd.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")){
+            JOptionPane.showMessageDialog(null, "La MARCA debe contener solo letras", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        return true;
+    }
+    
 }

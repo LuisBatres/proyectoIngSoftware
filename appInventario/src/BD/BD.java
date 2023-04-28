@@ -1,8 +1,7 @@
 package BD;
 
-// LO QUE SE EJECUTA PARA LOS QUERYS TIENE QUE IR EN CADA METODO?
-
 import appinventario.Empresa;
+import appinventario.Interfaz;
 import appinventario.Producto;
 import appinventario.ProductoVenta;
 import appinventario.Provedor;
@@ -37,8 +36,8 @@ public class BD {
             ps  = conexion.prepareStatement(query);
            
             ps.setInt    ( 1, obj.getCodigo()      );
-            ps.setString ( 2, obj.getNombre()   );
-            ps.setString ( 3, obj.getMarca()    );
+            ps.setString ( 2, obj.getNombre().trim()  );
+            ps.setString ( 3, obj.getMarca().trim()    );
             ps.setFloat  ( 4, obj.getPrecioCompra() );
             ps.setFloat  ( 5, obj.getPrecioVenta()  );
             ps.setInt    ( 6, obj.getExistencias() );
@@ -66,11 +65,11 @@ public class BD {
             conexion = con.getConexion();
             ps = conexion.prepareStatement(query);
             
-            ps.setString ( 1, obj.getNombre()   );
-            ps.setString ( 2, obj.getGiro()     );
-            ps.setString ( 3, obj.getEmail()    );
-            ps.setString ( 4, obj.getTelefono() );
-            ps.setString ( 5, obj.getDomicilio());
+            ps.setString ( 1, obj.getNombre().trim()   );
+            ps.setString ( 2, obj.getGiro().trim()     );
+            ps.setString ( 3, obj.getEmail().trim()    );
+            ps.setString ( 4, obj.getTelefono().trim() );
+            ps.setString ( 5, obj.getDomicilio().trim());
             
             ps.executeUpdate();
            
@@ -95,10 +94,10 @@ public class BD {
             conexion = con.getConexion();
             ps = conexion.prepareStatement(query);
             
-            ps.setString ( 1, obj.getNombre()        );
-            ps.setString ( 2, obj.getTelefono()      );
-            ps.setString ( 3, obj.getEmail()         );
-            ps.setString ( 4, obj.getFechaContrato() );
+            ps.setString ( 1, obj.getNombre().trim()        );
+            ps.setString ( 2, obj.getTelefono().trim()      );
+            ps.setString ( 3, obj.getEmail().trim()         );
+            ps.setString ( 4, obj.getFechaContrato().trim() );
             ps.setInt    ( 5, obj.getIdEmpresa()         );
             
             ps.executeUpdate();
@@ -205,7 +204,7 @@ public class BD {
                 String nombreProvedor = rsProv.getString(1);
 
                 Object[] nuevoRenglon = {"#", codigo, nombre, marca, precioCompra, precioVenta, existencias, nombreProvedor};
-                modelo.addRow(nuevoRenglon);
+                modelo.addRow(nuevoRenglon);   
             }
         } catch (SQLException e) {
             e.printStackTrace();

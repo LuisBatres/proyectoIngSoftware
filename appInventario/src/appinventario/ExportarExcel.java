@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package appinventario;
 
 import java.awt.Desktop;
@@ -18,12 +13,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-
-
-/**
- *
- * @author zombi
- */
 public class ExportarExcel {
 
     public void exportarExcel(JTable t) throws IOException {
@@ -62,7 +51,7 @@ public class ExportarExcel {
                         if (t.getValueAt(f, c) instanceof Double) {
                             celda.setCellValue(Double.parseDouble(t.getValueAt(f, c).toString()));
                         } else if (t.getValueAt(f, c) instanceof Float) {
-                            celda.setCellValue(Float.parseFloat((String) t.getValueAt(f, c)));
+                            celda.setCellValue(Float.parseFloat(t.getValueAt(f, c).toString()));
                         } else {
                             celda.setCellValue(String.valueOf(t.getValueAt(f, c)));
                         }
