@@ -23,7 +23,9 @@ public class JMenuBarPers extends JFrame implements ActionListener {
     private JFrame frame;
     
     public JMenuBarPers(JFrame frame) {
+        
         this.frame = frame;
+        
         mb = new JMenuBar();
         mb.setForeground(Color.red);
         mb.setPreferredSize(new Dimension(55,30));
@@ -45,43 +47,10 @@ public class JMenuBarPers extends JFrame implements ActionListener {
         menuAbout.add(aboutVersion);
         
         mb.add(Box.createHorizontalGlue());
-        
-        menuMinimizar = new JMenu("-");
-        mb.add(menuMinimizar);
-        
-        menuCerrar = new JMenu("X");
-        menuCerrar.setMargin(new Insets(0, (mb.getSize().width - menuCerrar.getPreferredSize().width) / 2, 0, 0));
-        mb.add(menuCerrar);
-        //menuCerrar.setAlignmentX(CENTER_ALIGNMENT);
-        //menuCerrar.setVerticalTextPosition((int) CENTER_ALIGNMENT);
-        //menuCerrar.setHorizontalTextPosition(SwingConstants.CENTER);
-        
-
-        //ImageIcon iconoCerrar = new ImageIcon("C:\\Users\\franc\\OneDrive\\Documentos\\GitHub\\proyectoIngSoftware\\appInventario\\src\\cerrar.png");
-        ///menuCerrar.setIcon(iconoCerrar);
-        //menuCerrar.setIcon(Imagenes.escalarImagen(menuCerrar.getIcon(), 30, 30));
-        //menuCerrar.setPreferredSize(new Dimension(50,30));
-        
-        
-        menuCerrar.setBackground(Color.red);
-        
+         
         fileSalir.addActionListener(this);
         fileCerrarSesion.addActionListener(this);
         aboutVersion.addActionListener(this);
-        
-        menuCerrar.addMouseListener(new MouseAdapter() {
-                    public void mouseClicked(MouseEvent e) {
-                        //frame.dispose();
-                        System.exit(0);
-                    }
-                });
-        
-        menuMinimizar.addMouseListener(new MouseAdapter() {
-                    public void mouseClicked(MouseEvent e) {
-                        JFrame f = frame;
-                        f.setState(Frame.ICONIFIED);
-                    }
-                });
         
         aboutVersion.setPreferredSize(new Dimension(100,25)); // ******
         fileCerrarSesion.setPreferredSize(new Dimension(100,25)); // ******
@@ -89,21 +58,30 @@ public class JMenuBarPers extends JFrame implements ActionListener {
         
         fileSalir.setBorderPainted(false);
         fileCerrarSesion.setBorderPainted(false);
+    
+        JLabel labelMinimizar = new JLabel("-", JLabel.CENTER);
+        labelMinimizar.setForeground(Color.white);
+        labelMinimizar.setPreferredSize(new Dimension(35, 0));
+        mb.add(labelMinimizar);
         
-        menuCerrar.setPreferredSize(new Dimension(40, 30));
-        //menuCerrar.setUI(new CustomMenuUI()); // Establecemos un MenuUI personalizado
-        //Insets insets = new Insets(0,0,0,0);
-        //menuCerrar.setMargin(insets);
+        labelMinimizar.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                JFrame f = frame;
+                f.setState(Frame.ICONIFIED);
+            }
+        });
         
-        menuCerrar.setPreferredSize(new Dimension(40, 30));
-        
-        menuCerrar.setHorizontalTextPosition((int) CENTER_ALIGNMENT);
-        menuCerrar.setHorizontalTextPosition(SwingConstants.CENTER);
-        
-        //menuCerrar.setUI(new CustomMenuUI()); // Establecemos un MenuUI personalizado
-        menuCerrar.setFont(new Font("Arial",Font.PLAIN, 12));
-        menuCerrar.setHorizontalTextPosition(SwingConstants.CENTER);
-        
+        JLabel labelCerrar = new JLabel("X", JLabel.CENTER);
+        labelCerrar.setForeground(Color.white);
+        labelCerrar.setPreferredSize(new Dimension(35, 0));
+        mb.add(labelCerrar);
+
+        labelCerrar.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                //frame.dispose();
+                System.exit(0);
+            }
+        });
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -127,9 +105,6 @@ public class JMenuBarPers extends JFrame implements ActionListener {
             "Francisco Quezada Rivera - 20130815\n\n" +
             "1.0.0 v", "Acerca De", JOptionPane.INFORMATION_MESSAGE);
         }
-        if (e.getSource()==menuMinimizar) {
-            
-        }
     }
 
     public JMenuBar menu() {
@@ -152,4 +127,6 @@ public class JMenuBarPers extends JFrame implements ActionListener {
             g2.drawString(getText(), x, y);
         }
     }
+    
+    
 }

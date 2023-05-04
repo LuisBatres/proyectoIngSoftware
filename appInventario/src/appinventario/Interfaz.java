@@ -4,6 +4,9 @@ import BD.BD;
 import BD.Conexion;
 import java.awt.Color;
 import java.awt.Insets;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,8 +16,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,6 +50,7 @@ public class Interfaz extends javax.swing.JFrame {
     DefaultTableModel modelo;
     Conexion con = new Conexion();
     BD bd = new BD();
+    Point mouseDownCompCoords = null;
     
     public Interfaz() {
         initComponents();
@@ -52,6 +58,26 @@ public class Interfaz extends javax.swing.JFrame {
         modelo = (DefaultTableModel)table.getModel();
         
         bd.muestraProductos(modelo);
+        actualizaNumeros();
+        
+        
+        addMouseListener(new MouseAdapter() {
+            
+            
+            public void mousePressed(MouseEvent e) {
+                mouseDownCompCoords = e.getPoint();
+            }
+        });
+        
+        addMouseMotionListener(new MouseAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                Point currCoords = e.getLocationOnScreen();
+                setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+            }
+        });
+        
+        javax.swing.border.Border border = javax.swing.BorderFactory.createLineBorder(new Color(230, 230, 230), 1);
+        this.getRootPane().setBorder(border);
     }
     
     @SuppressWarnings("unchecked")
@@ -719,8 +745,7 @@ public class Interfaz extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(252, 252, 252));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBackground(new java.awt.Color(250, 250, 250));
 
         jPanel2.setBackground(new java.awt.Color(25, 34, 43));
 
@@ -989,7 +1014,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(jlblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -1072,6 +1097,8 @@ public class Interfaz extends javax.swing.JFrame {
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun elemento de la tabla", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        
+        actualizaNumeros();
     }//GEN-LAST:event_jbtnEliminarActionPerformed
 
     private void jbtnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseExited
@@ -1329,7 +1356,7 @@ public class Interfaz extends javax.swing.JFrame {
                 }
             }
         }
-        
+        actualizaNumeros();
     }//GEN-LAST:event_jBtnGuardarEmpActionPerformed
 
     private void jBtnCancelarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarEmpActionPerformed
@@ -1384,6 +1411,7 @@ public class Interfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese solo numeros (NO PUEDE HABER CAMPOS VACIOS)", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
    
+        actualizaNumeros();
     }//GEN-LAST:event_jBtnGuardarProdActionPerformed
 
     private void jBtnCancelarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarProdActionPerformed
@@ -1429,7 +1457,7 @@ public class Interfaz extends javax.swing.JFrame {
                 }
             }
         }
- 
+        actualizaNumeros();
     }//GEN-LAST:event_jBtnGuardarProvActionPerformed
 
     private void jBtnCancelarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarProvActionPerformed
@@ -1521,6 +1549,8 @@ public class Interfaz extends javax.swing.JFrame {
         
         jLabelSubtotalVenta.setText(subtotalVenta + "");
         jLabelTotalVenta.setText(totalVenta + "");
+        
+        actualizaNumeros();
     }//GEN-LAST:event_jBtnGuardarNvaVentaActionPerformed
 
     private void jBtnCancelarNvaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarNvaVentaActionPerformed
@@ -1543,11 +1573,11 @@ public class Interfaz extends javax.swing.JFrame {
             UIManager.put ("MenuBar.margin"                , insets);
         
             UIManager.put ( "MenuBar.background"           , fondoJMenuBar);
-            UIManager.put ("MenuBar.borderBottom"          , Color.RED);
+            UIManager.put ( "MenuBar.borderBottom"          , Color.RED);
             
             UIManager.put ( "Menu.foreground"              , texto);
             UIManager.put ( "Menu.selectionBackground"     , texto);
-            UIManager.put ("Menu.border"                   , emptyBorder);
+            UIManager.put ( "Menu.border"                  , emptyBorder);
             UIManager.put ( "Menu.selectionBackground"     , fondoJMenuBarHover);
             UIManager.put ( "Menu.selectionForeground"     , texto);
             
@@ -1941,4 +1971,12 @@ public class Interfaz extends javax.swing.JFrame {
         return true;
     }
     
+    
+    public void actualizaNumeros() {
+        int contador = 1;
+        for (int i = 0; i < table.getRowCount(); i++) {
+            table.setValueAt(contador, i, 0);
+            contador++;
+        }
+    }
 }
